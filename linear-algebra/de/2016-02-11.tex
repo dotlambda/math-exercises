@@ -1,0 +1,136 @@
+\documentclass{scrartcl}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{german}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{scrpage2}
+
+\title{Aufgaben zur Klausurvorbereitung}
+\subtitle{Lineare Algebra I\\Wintersemester 2015/16}
+\author{Robert Schütz}
+\date{11. Februar 2016}
+
+\begin{document}
+	\pagestyle{scrheadings}
+	\lohead{Lineare Algebra I\\Wintersemester 2015/16}
+	\rohead{Robert Schütz\\11. Februar 2016}
+	\maketitle
+	\section{Gruppen, Körper, etc.}
+	\paragraph{Aufgabe 1}
+	Sei $(G,e,\circ)$ eine Gruppe mit $\vert G\vert<\infty$
+	und für jedes $g\in G\setminus\{e\}$ gelte $g\neq g^{-1}$.
+	Zeigen Sie:
+	\begin{enumerate}[label=(\alph*)]
+		\item Die Abbildung $\varphi:G\to G, g\mapsto g^2=g\circ g$
+			ist genau dann ein Gruppenhomomorphismus, wenn $G$ abelsch ist.
+		\item Wenn $G$ abelsch ist, dann ist die Abbildung $\varphi$  bijektiv.
+	\end{enumerate}
+	\paragraph{Aufgabe 2}
+	Sei $G$ eine Gruppe mit $n:=\vert G\vert<\infty$. Zeigen Sie, dass $\text{Aut}(G)$,
+	die Automorphismen von G, isomorph zu einer Untergruppe der $S_n$ sind.\\
+	\textbf{Hinweis}: Überlegen Sie sich zunächst, dass für einen Gruppenisomorphismus
+	$\varphi: G\to G'$ und eine Untergruppe $H\subseteq G$ gilt,
+	dass auch $\varphi(H)\subseteq G'$ eine Untergruppe ist.
+	\paragraph{Aufgabe 3}
+	Sei $K$ ein Körper mit $\vert K\vert<\infty$ und $\psi\in\text{End}(K)$.
+	Zeigen Sie, dass $\psi$ bijektiv ist.
+	\section{Lineare Abbildungen}
+	\paragraph{Aufgabe 1}
+	Seien $U, V, W$ endl.-dim. Vektorräume, $\varphi: U\to V$ ein VR-Monomorphismus
+	und $\psi: V\to W$ ein VR-Epimorphismus, sodass $\text{Kern}(\psi)=\text{Bild}(\varphi)$.\\
+	Zeigen Sie, dass $\text{dim}(V)=\text{dim}(U)+\text{dim}(W)$ gilt.
+	\paragraph{Aufgabe 2}
+	Es seien $K$ ein Körper und $V$ ein endlich dimensionaler $K$-Vektorraum
+	mit Basis $\underline{B}=(b_1,\dots,b_n)$
+	und $g\in\text{Aut}(V)$ ein Automorphismus von $V$.
+	\begin{enumerate}[label=(\alph*)]
+		\item Zeigen Sie, dass $\underline{C}:=(g(b_1),\dots,g(b_n))$ auch eine Basis von V ist.
+		\item Zeigen Sie, dass die Darstellungsmatrizen
+			$\text{Mat}_{\underline{B}}^{\underline{B}}(g)$
+			und $\text{Mat}_{\underline{C}}^{\underline{C}}(g)$ gleich sind.
+	\end{enumerate}
+	\section{Darstellungsmatrizen}
+	\paragraph{Aufgabe 1}
+	Sei $A\in \text{M}_{n\times n}(\mathbb{R})$. Zeigen Sie:
+	\[A \text{ ist ähnlich zu } 1\!\!1_n \text{ oder zu } (-1)\cdot1\!\!1_n
+	\Leftrightarrow A^2=1\!\!1_n\]
+	\paragraph{Aufgabe 2}
+	Seien $K$ ein Körper, $V$ und $W$ endlich-dim. $K$-Vektorräume,
+	$\underline{B}$ eine Basis von $V$, $\underline{C}$ eine Basis von $W$.
+	Seien $A\in\text{M}_{m\times n}(K)$ und $B\in\text{M}_{n\times m}(K)$ Matrizen mit $m>n$.
+	Seien $f: V\to W$ und $g: W\to V$ lineare Abbildungen, sodass $\text{Mat}_{\underline{B}}^{\underline{C}}(f)=A$
+	und $\text{Mat}_{\underline{C}}^{\underline{B}}(g)=B$ gelten.
+	Welche Aussagen stimmen?
+	\begin{enumerate}[label=(\alph*)]
+		\item $f$ ist ein Isomorphismus.
+		\item $f$ ist nicht surjektiv.
+		\item Man kann $V$ und $W$ so wählen, dass $g$ ein Endomorphismus ist.
+		\item $f$ ist kein Monomorphismus.
+		\item $g$ ist nicht injektiv.
+		\item $g$ ist kein Epimorphismus.
+	\end{enumerate}
+	\section{Dualraum}
+	\paragraph{Definition}
+	Seien $V$ ein $K$-Vektorraum und $S\subseteq V$, $T\subseteq V^*=\text{Lin}(V,K)$ Teilmengen.
+	\[\text{Ann}(S):=\{\varphi\in V^*\ \vert\ \varphi(v)=0\ \forall v\in S\}\subseteq V^*\]
+	\[\text{Null}(T):=\{v\in V\ \vert\ \varphi(v)=0\ \forall\varphi\in T\}\subseteq V\]
+	\paragraph{Aufgabe 1}
+	Sei $V$ ein Vektorraum, $T\subseteq V^*$. Zeigen Sie:
+	\[\text{Null}(T)=V\Leftrightarrow T\subseteq\{0_{V^*}\}\]
+	\paragraph{Aufgabe 2}
+	Sei $U\subseteq V$ ein Untervektorraum. Sei $S$ eine Basis von $U$ und $S\ \dot\cup\ T$ eine Basis von $V$.\\
+	Sei $f: V\to W$ eine lineare Abbildung und $f^*: W^*\to V^*$
+	mit $f^*(\varphi):=\varphi\circ f$ die duale Abbildung. Zeigen Sie:
+	\begin{enumerate}[label=(\alph*)]
+		\item $\text{Ann}(U)=\text{L}(T^*)$, wobei $T^*$ die duale Basis zu $T$ ist.\\
+		\textbf{Hinweis}: Sie dürfen hier annehmen, dass V endlich-dimensional ist,
+		allerdings ist das nicht notwendig.
+		\item Ist $V$ endlich-dimensional, so gilt $\dim \text{Ann}(U)=\dim V-\dim U$.
+		\item $\text{Kern}(f^*)=\text{Ann}(\text{Bild}(f))$.
+	\end{enumerate}
+	\section{Eigenwerte}
+	\paragraph{Aufgabe 1}
+	Sei $K$ ein Körper, $V$ ein endlich-dim. $K$-Vektorraum und $\varphi:V\to V$ ein Endomorphismus.
+	Zeigen Sie: Besitzt $\varphi$ keinen Eigenwert, so ist $\varphi$ ein Automorphismus.\\
+	\textbf{Hinweis}: Überlegen Sie sich zunächst,
+	was für Endomorphismen endlich-dimensionaler Vektorräume gilt.
+	\paragraph{Aufgabe 2}
+	Sei $\mathbb{F}_5$ der Körper mit 5 Elementen,
+	$V$ ein 4-dimensionaler $\mathbb{F}_5$-Vektorraum
+	und $\underline{B}=(b_1,b_2,b_3,b_4)$ eine Basis von $V$.
+	Sei die lineare Abbildung $f: V\to V$ gegeben
+	durch $f(b_1)=b_2$, $f(b_2)=f(b_3)$, $f(b_3)=f(b_4)$ und $f(b_4)=f(b_1)$
+	\begin{enumerate}[label=(\alph*)]
+		\item Geben Sie $\text{Mat}_{\underline{B}}^{\underline{B}}(f)$ an
+			und berechnen Sie das charakteristische Polynom von $f$.
+			(Die Koeffizienten liegen in $\mathbb{F}_5$!)
+		\item Zeigen Sie, dass $f$ diagonalisierbar ist,
+			und geben Sie eine Diagonalmatrix an, die Darstellungsmatrix von $f$
+			bezüglich einer Basis von Eigenvektoren ist.
+		\item Bestimmen Sie den Eigenraum von $f$ zum Eigenwert $\overline{-1}$
+	\end{enumerate}
+	\section{Euklidische Vektorräume}
+	\paragraph{Aufgabe 1}
+	Seien $x_1, x_2, x_3\in\mathbb{R}^4$ mit
+	\[x_1=\begin{pmatrix}3\\4\\0\\0\end{pmatrix},\quad
+	x_2=\begin{pmatrix}1\\3\\1\\1\end{pmatrix},\quad
+	x_3=\begin{pmatrix}0\\5\\5\\7\end{pmatrix}\]
+	Sei $U=\text{L}(x_1,x_2,x_3)$ die lineare Hülle ebenjener Vektoren.
+	\begin{enumerate}[label=(\alph*)]
+		\item Zeigen Sie, dass $\{x_1,x_2,x_3\}$ eine Basis von $U$ ist.
+		\item Bestimmen Sie mithilfe des Gram-Schmidt'schen
+			Orthogonalisierungsverfahrens eine Orthonormalbasis
+			von $U$ bezüglich des Standardskalarproduktes.
+	\end{enumerate}
+	\paragraph{Aufgabe 2}
+	Seien $x,y\in\mathbb{R}^n$ und $\langle\cdot,\cdot\rangle$
+	ein Skalarprodukt mit zugehöriger Norm $\|\cdot\|$.
+	\begin{enumerate}[label=(\alph*)]
+		\item Zeigen Sie:
+			\[\|x+y\|^2+\|x-y\|^2=2\|x\|^2+2\|y\|^2\]
+		\item Sei $x\perp y$. Zeigen Sie den Satz des Pythagoras:
+			\[\|x\|^2+\|y\|^2=\|x-y\|^2\]
+	\end{enumerate}
+\end{document}
