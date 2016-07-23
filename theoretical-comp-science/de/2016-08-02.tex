@@ -1,0 +1,302 @@
+\documentclass[german,headsepline]{scrartcl}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setmainlanguage{german}
+\setlength\parindent{0pt}
+
+\usepackage{scrlayer-scrpage}
+\pagestyle{scrheadings}
+\ihead{\textbf{Aufgaben zur Klausurvorbereitung}\\Einführung in die Theoretische Informatik}
+\ohead{Robert Schütz\\2. August 2016}
+
+\usepackage{enumerate}
+\usepackage{amsmath, mathtools, amsthm, amsfonts}
+
+\usepackage{exsheets}
+\SetupExSheets{headings=block-subtitle}
+\SetupExSheets{question/name=Aufgabe}
+\SetupExSheets{counter-format=se.qu,counter-within=section}
+
+\SetupExSheets{solution/print=true}
+
+\theoremstyle{definition}
+\newtheorem{ex}{Aufgabe}[section]
+
+\begin{document}
+	\section{Maschinen}
+	
+	\subsection{Turingmaschinen}
+	\begin{question}[subtitle={Klausur 2012}]
+		Gebe eine 1-Band-Turingmaschine $M$ an,
+		die die Funktion $f:\mathbb{N}\times\mathbb{N}\to\mathbb{N}$ mit
+		\[f(x,y)=\begin{cases}
+			x, &\text{falls $x$ gerade} \\
+			y, &\text{falls $x$ ungerade}
+		\end{cases}\]
+		berechnet.
+		
+		\textit{Zur Erinnerung}: Die Zahl $n$ wird durch das Unärwort $0^{n+1}$ dargestellt.
+	\end{question}
+	
+	\begin{question}[subtitle={Klausur 2014}]
+		Gebe eine 2-Band-Turingmaschine $M$ an, die die durch $f(w)=0^{\#_0(w)}1^{\#_1(w)}$ gegebene Funktion $f:\{0,1\}^*\to\{0,1\}^*$ berechnet.
+	\end{question}
+	
+	\begin{question}[subtitle={Klausur 2015}]
+		Gebe einen totalen (deterministischen) 2-Band-Turingakzeptor $M$ an,
+		der die Sprache $L=\{w2w\colon w\in\{0,1\}^*\}$ (über dem Alphabet $\{0,1,2\}$) erkennt.
+	\end{question}
+	
+	\subsection{Registermaschinen}
+	\begin{question}
+		
+	\end{question}
+	
+	\textbf{TODO}: Registermaschinen und -operatoren
+	
+	\section{Funktionen}
+	\begin{question}
+		Zeige nur unter Verwendung der Definition der primitiv rekursiven Funktionen,
+		dass folgende Funktionen primitiv rekursiv sind:
+		\begin{enumerate}[(a)]
+			\item $f:\mathbb{N}\to\mathbb{N}$ mit $f(x)=x^2+2x+1$
+			\item $g:\mathbb{N}^2\to\mathbb{N}$ mit $g(x,y)=2^x+2^y$
+				\hfill\textit{(Nachklausur 2015)} \\
+				Du darfst verwenden, dass die Addition $add(x,y)=x+y$ primitiv rekursiv ist. \\
+				\textit{Hinweis}: Zeige zunächst, dass die Funktion $\hat{f}(x)=2^x$ primitiv rekursiv ist.
+			\item $h:\mathbb{N}^3\to\mathbb{N}$ mit $h(x,y,z)=3x+z$
+		\end{enumerate}
+	\end{question}
+	
+	\begin{question}[subtitle={Nachklausur 2013}]
+		Eine natürliche Zahl heißt \emph{Mersenne-Primzahl}, falls sie von der Form $2^n-1$ (für ein $n\in\mathbb{N}$) und eine Primzahl ist.
+		
+		Zeige, dass die Menge
+		\[M=\{x\colon x\text{ ist Mersenne-Primzahl}\}\]
+		primitiv rekursiv ist.
+		
+		Du darfst dabei neben der Definition der primitiv rekursiven Funktionen die aus der Vorlesung bekannten Abschlusseigenschaften sowie die primitive Rekursivität der Multiplikation $\cdot$, der modifizierten Subtraktion $\dot{-}$, der Potenzfunktion $n\mapsto2^n$ und der Gleichheitsrelation verwenden.
+	\end{question}
+	\begin{solution}
+		Es gilt
+		\[x\in M\Leftrightarrow(x\neq0~\&~x\neq1~\&~\exists y<x(x=2^y\dot{-}1)~\&~(\forall m<x(\forall n<x(n\cdot m\neq x))).\]
+		
+		Da die primitiv rekursiven Mengen gegen explizite Definitionen,
+		gegen beschränkte Quantoren und gegen die aussagenlogischen Junktoren abgeschlossen sind
+		und aufgrund der primitiven Rekursivität der oben genannten Funktionen
+		ist $M$ damit primitiv rekursiv.
+	\end{solution}
+	
+	\section{Mengen}
+	\begin{question}[subtitle={Nachklausur 2012}]
+		\begin{enumerate}[(a)]
+			\item Zeige, dass die Mengen
+				\[A=\{\langle x,y\rangle\colon\varphi_x(y)\downarrow\text{ und }\varphi_y(x)\downarrow\}\]
+				und
+				\[B=\{\langle x,y\rangle\colon\varphi_x(y)\uparrow\text{ oder }\varphi_y(x)\uparrow\}\]
+				nicht rekursiv sind.
+			\item Sind $A$ und $B$ rekursiv aufzählbar?
+		\end{enumerate}
+	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Es gilt $K_d\leq_m A$ via $f(x)=\langle x,x\rangle$ da
+				\[x\in K_d\Leftrightarrow\varphi_x(x)\downarrow\Leftrightarrow
+				\varphi_x(x)\downarrow~\&~\varphi_x(x)\downarrow\Leftrightarrow
+				f(x)=\langle x,x\rangle\in A\]
+				Da das diagonale Halteproblem nicht rekursiv ist,
+				ist also nach dem Reduktionslemma auch $A$ nicht rekursiv.
+				Da $B=\overline{A}$ und die rekursiven Mengen gegen Komplement abgeschlossen sind,
+				ist somit auch $B$ nicht rekursiv.
+			\item Aufgrund des Reduktionslemmas können nicht beide Mengen rekursiv aufzählbar sein.
+				$A$ ist als Definitionsbereich der partiell rekursiven Funktion
+				\[\psi(\langle x,y\rangle)=\varphi(x,y)+\varphi(y,x)\]
+				rekursiv aufzählbar.
+				Da eine Menge rekursiv ist, falls die Menge selbst und ihr Komplement rekursiv aufzählbar sind,
+				kann also $B$ nicht rekursiv aufzählbar sein.
+		\end{enumerate}
+	\end{solution}
+	
+	\begin{question}
+		Die symmetrische Differenz zweier Mengen $A$ und $B$ ist
+		\[A\triangle B=(A\setminus B)\cup(B\setminus A)\]
+		Zeige:
+		\begin{enumerate}[(a)]
+			\item Ist $A\triangle B$ endlich, so gilt $A=_mB$.
+			\item Die symmetrische Differenz zweier rekursiv aufzählbarer Sprachen ist nicht notwendig rekursiv aufzählbar.
+			\item Seien $A$ und $B$ rekursiv aufzählbar.
+			Wenn $A\triangle B$ rekursiv ist, dann sind auch $A\setminus B$ und $B\setminus A$ rekursiv.
+			%\item Sei $A$ rekursiv. Ist $A\triangle B$ rekursiv aufzählbar, so sind auch $A\setminus B$ und $B\setminus A$ rekursiv aufzählbar.
+			%			\item Sei $A$ nicht rekursiv und $B$ rekursiv.
+			%				Wenn $A\triangle B$ rekursiv ist, dann ist $A\cap B$ nicht rekursiv.
+		\end{enumerate}
+		\textit{Hinweis}: Du darfst alle Resultate der Vorlesung inklusive der Church-Turing-These verwenden.
+	\end{question}
+	
+	\begin{question}
+		Seien FIN und INF die Indizes der endlichen bzw. unendlichen rekursiv aufzählbaren Mengen:
+		\begin{align*}
+			\text{FIN} &= \{e\colon W_e\text{ ist endlich}\} \\
+			\text{INF} &= \{e\colon W_e\text{ ist unendlich}\}
+		\end{align*}
+		Sei TOT die Menge der Indizes aller rekursiven Funktionen:
+			\[\text{TOT}=\{e\colon W_e=\mathbb{N}\}\]
+		\begin{enumerate}[(a)]
+			\item Zeige, dass die Menge
+				$\text{FIN}\oplus\text{INF}=\{2e\colon e\in\text{FIN}\}\cup\{2e+1\colon e\in\text{INF}\}$
+				nicht rekursiv aufzählbar ist.
+			\item Zeige, dass das Komplement von TOT auf FIN many-one-reduzierbar ist,
+				also dass $\overline{\text{TOT}}\leq_m\text{FIN}$ gilt.
+			\item Zeige, dass FIN nicht rekursiv aufzählbar ist. \\
+				\textit{Hinweis}: Man kann durch geeignete $m$-Reduzierung zeigen,
+				dass $\overline{\text{TOT}}$ nicht rekursiv aufzählbar ist.
+		\end{enumerate}
+	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item FIN und INF sind als nichttriviale Indexmengen nach dem Satz von Rice nicht rekusiv.
+				Da aber $\text{FIN}=\overline{\text{INF}}$ gilt,
+				muss nach dem Komplementlemma zumindest eine der Mengen nicht rekursiv aufzählbar sein.
+				Aus $\text{FIN}\leq_m\text{FIN}\oplus\text{INF}$ und $\text{INF}\leq_m\text{FIN}\oplus\text{INF}$
+				folgern wir mithilfe der Abgeschlossenheit der rekursiv aufzählbaren Mengen nach unten gegen $m$-Reduzierung,
+				dass $\text{FIN}\oplus\text{INF}$ nicht rekusiv aufzählbar ist.
+			\item \textbf{TODO}
+			\item \textbf{TODO}
+		\end{enumerate}
+	\end{solution}
+	
+	\begin{question}
+		Welche der folgenden Aussagen sind wahr?
+		Begründe deine Antworten und gebe für falsche Aussagen ein Gegenbeispiel an.
+		\begin{enumerate}[(a)]
+			\item Jede unendliche rekursive Menge enthält eine nichtrekursive Teilmenge.
+			\item Für zwei rekursiv aufzählbare Mengen $A$ und $B$ ist auch $A\setminus B$ rekursiv aufzählbar.
+			\item Seien $A$ und $B$ zwei disjunkte rekursiv aufzählbare Mengen, sodass $A\cup B$ rekursiv ist.
+				Dann sind auch $A$ und $B$ rekursiv.
+			\item Sind sowohl $A$ als auch $\overline{A}$ rekursiv aufzählbar, so gilt $A=_m\overline{A}$.
+		\end{enumerate}
+		\textit{Hinweis}: Du darfst alle Resultate der Vorlesung inklusive der Church-Turing-These verwenden.
+	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Wahr. Für $A\subseteq\mathbb{N}$ unendlich ist die Potenzmenge $\mathcal{P}(A)$,
+				d.h. die Menge der Teilmengen von $A$, überabzählbar.
+				Die Klasse der rekursiven Mengen ist allerdings abzählbar.
+			\item Falsch.
+			\item Wahr.
+			\item Wahr.
+		\end{enumerate}
+	\end{solution}
+	
+	\begin{question}[subtitle={Klausur 2012}]
+		Sei
+		\[\text{Id}=\{e\in\mathbb{N}\colon\forall n~(\varphi_e(n)=n)\}.\]
+		\begin{enumerate}[(a)]
+			\item Zeige, dass das Halteproblem $m$-reduzierbar auf Id ist, das heißt, dass $K\leq_m\text{Id}$ gilt.
+			\item Gebe für die folgenden Aussagen jeweils an, ob sie wahr oder falsch sind. Begründe deine Antworten!
+				\begin{enumerate}[(i)]
+					\item Id ist rekursiv.
+					\item $\overline{\text{Id}}$ ist rekursiv.
+					\item $\overline{\text{Id}}$ ist rekursiv aufzählbar.
+				\end{enumerate}
+		\end{enumerate}
+	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Definiere die zweistellige partiell rekursive Funktion $\psi$ durch
+				\[\psi(\langle e,x\rangle,y)=0\cdot\varphi_e(x)+y.\]
+				Dann gibt es, da $\varphi$ eine Gödelnummerierung ist,
+				eine rekursive Übersetzungsfunktion $f$ von $\psi$ nach $\varphi$,
+				d.h. $\psi(\langle e,x\rangle,y)=\varphi_{f(\langle e,x\rangle)}(y)$ für alle $y\in\mathbb{N}$.
+				Somit gilt
+				\begin{align*}
+					\langle e,x\rangle\in K &\Leftrightarrow \varphi_e(x)\downarrow \\
+					&\Leftrightarrow \psi(\langle e,x\rangle,y)=y\text{ für alle }y\in\mathbb{N} \\
+					&\Leftrightarrow \varphi_{f(\langle e,x\rangle)}(y)=y\text{ für alle }y\in\mathbb{N} \\
+					&\Leftrightarrow f(\langle e,x\rangle)\in\text{Id},
+				\end{align*}
+				d.h. $K\leq_m\text{Id}$ via $f$.
+			\item \begin{enumerate}[(i)]
+				\item Falsch. Id ist als nichttriviale Indexmenge nach dem Satz von Rice nicht rekursiv.
+					Alternativ kann man argumentieren, dass $K$ nicht rekursiv ist und somit nach dem Reduktionslemma Id auch nicht.
+				\item Falsch. Eine Menge ist genau dann rekursiv, wenn ihr Komplement rekursiv ist.
+				\item Aus $K\leq_m\text{Id}$ via $f$ folgt $\overline{K}\leq_m\overline{\text{Id}}$ via $f$.
+					Also wäre mit $\overline{\text{Id}}$ auch $\overline{K}$ rekursiv aufzählbar,
+					da die rekursiv aufzählbaren Mengen nach unten gegen $\leq_m$ abgeschlossen sind.
+					Dies ergäbe allerdings einen Widerspruch,
+					denn dann wären $K$ und $\overline{K}$ rekusriv aufzählbar und somit $K$ rekursiv.
+			\end{enumerate}
+		\end{enumerate}
+	\end{solution}
+	
+	\section{Formale Sprachen}
+	\begin{question}
+		Zeige, dass die folgenden Sprachen nicht kontextfrei sind:
+		\begin{align*}
+			L_1 &= \{w\in\{a,b,c\}^*\colon \#_a(w)=\#_b(w)=\#_c(w)\} & \textit{(Klausur 2014)} \\
+			L_2 &= \{a^nb^{2n}c^{3n}\colon n\geq1\} & \textit{(Klausur 2015)} \\
+			L_3 &= \{0^{n^2}\colon n\geq0\} & \textit{(Nachklausur 2015)}
+		\end{align*}
+	\end{question}
+	
+	\begin{question} % http://algo2.iti.kit.edu/3126.php
+		Wahr oder falsch?
+		\begin{enumerate}[(a)]
+			\item Die Sprache $L_1=\{vw\colon v,w\in\{0,1\}^*,\vert v\vert=\vert w\vert\}$ ist regulär.
+			\item Die Sprache $L_2=\{w_0\circ\ldots\circ w_n\colon n\in\mathbb{N},\vert w_k\vert=k~\forall k\in\mathbb{N}\}$ ist kontextfrei.
+			\item Sei $L\subseteq\{0,1\}^*$ eine Sprache mit $\vert L\vert=n$ für ein $n\in\mathbb{N}$. Dann ist $L$ regulär.
+		\end{enumerate}
+	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Wahr. $L_1$ wird von der Grammatik $G=(\{S,T\},\{0,1\},P,S)$ mit den Regeln
+				\[P=\{S\rightarrow0T~|~1T~|~\lambda,~T\rightarrow0S~|~1S\}\]
+				erzeugt, denn
+				\[L=\{w\in\{0,1\}^*\colon\vert w\vert=2n\text{ für ein }n\in\mathbb{N}\}.\]
+			\item Falsch. \textbf{TODO}: Pumpinglemma anwenden
+			\item Wahr. Jede endliche Sprache ist regulär, denn jede endliche Sprache ist entscheidbar.
+		\end{enumerate}
+	\end{solution}
+	
+	\begin{question}
+		Zeige, dass die Sprache
+		\[L=\{w\in\{0,1\}^*\colon w=Bin(n)\text{ für ein }n\in\mathbb{N}\}\]
+		der Binärzahlen regulär ist.
+	\end{question}
+	\begin{solution}
+		$L$ wird von der Grammatik $G=(\{S,A\},\{0,1\},P,S)$ mit den Regeln
+		\[P=\{S\rightarrow0~|~1A,~A\rightarrow0A~|~1A~|~\lambda\}\]
+		ezeugt, denn
+		\[L=\{0\}\cup\{1w\colon w\in\{0,1\}^*\}\text{.}\]
+	\end{solution}
+	
+	\begin{question}
+		Sei $L$ die Sprache über dem Alphabet $\{a,b,c\}$, die genau die Wörter enthält,
+		in denen das Teilwort $abc$ genau einmal vorkommt.
+		\begin{enumerate}[(a)]
+			\item Gebe eine rechtslineare Grammatik an, die $L$ erzeugt.
+			\item Gebe einen deterministischen endlichen Automaten an, der $L$ erkennt.
+		\end{enumerate}
+	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item $L$ wird von der Grammatik $G=(\{S,A,B,C,D,E\},\{a,b,c\},P,S)$ mit den Regeln
+				\begin{align*}
+					P=\{&S\rightarrow aA~|~bS~|~cS, \\
+					&A\rightarrow aA~|~bB~|~cS, \\
+					&B\rightarrow aA~|~bS~|~cC, \\
+					&C\rightarrow aD~|~bC~|~cC~|~\lambda, \\
+					&D\rightarrow aD~|~bE~|~cC~|~\lambda, \\
+					&E\rightarrow aD~|~bC~|~\lambda\}
+				\end{align*}
+				erzeugt.
+		\end{enumerate}
+	\end{solution}
+	
+	\begin{question}
+		Sei $L$ die reguläre Sprache
+		\[L=\{w\in\{0,1,2\}^*\colon\#_0(w)=0\text{ oder }\#_1(w)=0\text{ oder }\#_2(w)=0\}).\]
+		Gebe einen deterministischen endlichen Automaten an, der $L$ erkennt.
+	\end{question}
+\end{document}
