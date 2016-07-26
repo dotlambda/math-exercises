@@ -18,7 +18,7 @@
 \SetupExSheets{question/name=Aufgabe}
 \SetupExSheets{counter-format=se.qu,counter-within=section}
 
-\SetupExSheets{solution/print=true}
+%\SetupExSheets{solution/print=true}
 
 \theoremstyle{definition}
 \newtheorem{ex}{Aufgabe}[section]
@@ -49,11 +49,31 @@
 	\end{question}
 	
 	\subsection{Registermaschinen}
-	\begin{question}
-		
+	\begin{question}[subtitle={Klausur 2015}]
+		Die Funktion $f:\mathbb{N}\to\mathbb{N}$ sei durch
+		\[f(x)=\begin{cases}
+			1, &\text{falls $x$ ungerade} \\
+			0, &\text{falls $x$ gerade}
+		\end{cases}\]
+		definiert.
+		Gebe einen Registeroperator $P$ an, der $f$ konservativ berechnet.
 	\end{question}
+	\begin{solution}
+		\[P\equiv[s_1a_2a_3]_1[s_2a_1]_2[s_1s_1a_2a_2]_1[s_3s_2a_1]_3\]
+	\end{solution}
 	
-	\textbf{TODO}: Registermaschinen und -operatoren
+	\begin{question}[subtitle={Nachklausur 2015}]
+		Gebe einen konservativen Registeroperator an,
+		der die Gleichheitsrelation erkennt, d.h. die Funktion
+		\[c_=(x,y)=1\Leftrightarrow x=y\]
+		berechnet.
+	\end{question}
+	\begin{solution}
+		Es gilt
+		\[x=y\Leftrightarrow (x\dot{-}y)+(y\dot{-}x)=0.\]
+		Diese Darstellung liegt dem folgenden Registeroperator zur Berechnung von $c_=(x,y)$ zugrunde:
+		\[P\equiv T_{1\to4,3}T_{1\to6,3}T_{2\to5,3}T_{2\to7,3}[s_4s_7]_7[s_5s_6]_6[a_4s_5]_5a_3[s_3s_4]_4\]
+	\end{solution}
 	
 	\section{Funktionen}
 	\begin{question}
@@ -89,32 +109,38 @@
 	\end{solution}
 	
 	\section{Mengen}
-	\begin{question}[subtitle={Nachklausur 2012}]
+	\subsection{Rekursiv aufzählbare Mengen}
+	\begin{question}
+		Welche der folgenden Aussagen sind wahr?
+		Begründe deine Antworten und gebe für falsche Aussagen ein Gegenbeispiel an.
 		\begin{enumerate}[(a)]
-			\item Zeige, dass die Mengen
-				\[A=\{\langle x,y\rangle\colon\varphi_x(y)\downarrow\text{ und }\varphi_y(x)\downarrow\}\]
-				und
-				\[B=\{\langle x,y\rangle\colon\varphi_x(y)\uparrow\text{ oder }\varphi_y(x)\uparrow\}\]
-				nicht rekursiv sind.
-			\item Sind $A$ und $B$ rekursiv aufzählbar?
+			\item Jede unendliche rekursive Menge enthält eine nichtrekursive Teilmenge.
+			\item Für zwei rekursiv aufzählbare Mengen $A$ und $B$ ist auch $A\setminus B$ rekursiv aufzählbar.
+			\item Seien $A$ und $B$ zwei disjunkte rekursiv aufzählbare Mengen, sodass $A\cup B$ rekursiv ist.
+			Dann sind auch $A$ und $B$ rekursiv.
+			\item Sind sowohl $A$ als auch $\overline{A}$ rekursiv aufzählbar, so gilt $A=_m\overline{A}$.
 		\end{enumerate}
+		\textit{Hinweis}: Du darfst alle Resultate der Vorlesung inklusive der Church-Turing-These verwenden.
 	\end{question}
 	\begin{solution}
 		\begin{enumerate}[(a)]
-			\item Es gilt $K_d\leq_m A$ via $f(x)=\langle x,x\rangle$ da
-				\[x\in K_d\Leftrightarrow\varphi_x(x)\downarrow\Leftrightarrow
-				\varphi_x(x)\downarrow~\&~\varphi_x(x)\downarrow\Leftrightarrow
-				f(x)=\langle x,x\rangle\in A\]
-				Da das diagonale Halteproblem nicht rekursiv ist,
-				ist also nach dem Reduktionslemma auch $A$ nicht rekursiv.
-				Da $B=\overline{A}$ und die rekursiven Mengen gegen Komplement abgeschlossen sind,
-				ist somit auch $B$ nicht rekursiv.
-			\item Aufgrund des Reduktionslemmas können nicht beide Mengen rekursiv aufzählbar sein.
-				$A$ ist als Definitionsbereich der partiell rekursiven Funktion
-				\[\psi(\langle x,y\rangle)=\varphi(x,y)+\varphi(y,x)\]
-				rekursiv aufzählbar.
-				Da eine Menge rekursiv ist, falls die Menge selbst und ihr Komplement rekursiv aufzählbar sind,
-				kann also $B$ nicht rekursiv aufzählbar sein.
+			\item Wahr. Für $A\subseteq\mathbb{N}$ unendlich ist die Potenzmenge $\mathcal{P}(A)$,
+			d.h. die Menge der Teilmengen von $A$, überabzählbar.
+			Die Klasse der rekursiven Mengen ist allerdings abzählbar.
+			\item Falsch. Zum Beispiel sind $A=\mathbb{N}$ und $B=K$ laut Vorlesung rekursiv aufzählbar.
+			Allerdings ist $A\setminus B=\overline{K}$ nicht rekursiv aufzählbar,
+			da sonst nach dem Komplementlemma $K$ rekursiv wäre.
+			\item Wahr.
+			\item Falsch. Dies gilt nur, falls $A\neq\emptyset,\mathbb{N}$:
+			Sind $A$ und $\overline{A}$ rekursiv aufzählbar,
+			so sind $A$ und $\overline{A}$ nach dem Komplementlemma rekursiv.
+			Laut Vorlesung sind alle rekursiven Mengen ungleich $\emptyset,\mathbb{N}$ $m$-äquivalent,
+			was leicht einzusehen ist. \\
+			Gilt aber zum Beispiel $A=\emptyset$, so ist $\overline{A}=\mathbb{N}$.
+			Allerdings gilt $\mathbb{N}\not\leq_m\emptyset$:
+			Aus $\mathbb{N}\leq_m\emptyset$ via $f$, also $x\in\mathbb{N}\Leftrightarrow f(x)\in\emptyset$,
+			folgt $f(x)\not\in\mathbb{N}$ für alle $x\in\mathbb{N}$,
+			was ein Widerspruch zur Rekursivität von $f$ ist.
 		\end{enumerate}
 	\end{solution}
 	
@@ -134,14 +160,47 @@
 		\textit{Hinweis}: Du darfst alle Resultate der Vorlesung inklusive der Church-Turing-These verwenden.
 	\end{question}
 	
+	\subsection{Reduktionsmethode}
+	\begin{question}[subtitle={Nachklausur 2012}]
+		\begin{enumerate}[(a)]
+			\item Zeige, dass die Mengen
+			\[A=\{\langle x,y\rangle\colon\varphi_x(y)\downarrow\text{ und }\varphi_y(x)\downarrow\}\]
+			und
+			\[B=\{\langle x,y\rangle\colon\varphi_x(y)\uparrow\text{ oder }\varphi_y(x)\uparrow\}\]
+			nicht rekursiv sind.
+			\item Sind $A$ und $B$ rekursiv aufzählbar?
+		\end{enumerate}
+	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Es gilt $K_d\leq_m A$ via $f(x)=\langle x,x\rangle$ da
+			\[x\in K_d\Leftrightarrow\varphi_x(x)\downarrow\Leftrightarrow
+			\varphi_x(x)\downarrow~\&~\varphi_x(x)\downarrow\Leftrightarrow
+			f(x)=\langle x,x\rangle\in A\]
+			Da das diagonale Halteproblem nicht rekursiv ist,
+			ist also nach dem Reduktionslemma auch $A$ nicht rekursiv.
+			Da $B=\overline{A}$ und die rekursiven Mengen gegen Komplement abgeschlossen sind,
+			ist somit auch $B$ nicht rekursiv.
+			\item Aufgrund des Reduktionslemmas können nicht beide Mengen rekursiv aufzählbar sein.
+			$A$ ist als Definitionsbereich der partiell rekursiven Funktion
+			\[\psi(\langle x,y\rangle)=\varphi(x,y)+\varphi(y,x)\]
+			rekursiv aufzählbar.
+			Da eine Menge rekursiv ist, falls die Menge selbst und ihr Komplement rekursiv aufzählbar sind,
+			kann also $B$ nicht rekursiv aufzählbar sein.
+		\end{enumerate}
+	\end{solution}
+	
 	\begin{question}
 		Seien FIN und INF die Indizes der endlichen bzw. unendlichen rekursiv aufzählbaren Mengen:
 		\begin{align*}
-			\text{FIN} &= \{e\colon W_e\text{ ist endlich}\} \\
-			\text{INF} &= \{e\colon W_e\text{ ist unendlich}\}
+			\text{FIN} &= \{e\in\mathbb{N}\colon W_e\text{ ist endlich}\} \\
+			\text{INF} &= \{e\in\mathbb{N}\colon W_e\text{ ist unendlich}\}
 		\end{align*}
 		Sei TOT die Menge der Indizes aller rekursiven Funktionen:
-			\[\text{TOT}=\{e\colon W_e=\mathbb{N}\}\]
+			\[\text{TOT}=\{e\in\mathbb{N}\colon W_e=\mathbb{N}\}\]
+		\textit{Hinweis}: Wie in der Vorlesung definiert,
+		ist $W_e$ der Definitionsbereich der $e$-ten partiell rekursiven Funktion,
+		also $W_e=Db(\varphi_e)=\{x\in\mathbb{N}\colon\varphi_e(x)\downarrow\}$.
 		\begin{enumerate}[(a)]
 			\item Zeige, dass die Menge
 				$\text{FIN}\oplus\text{INF}=\{2e\colon e\in\text{FIN}\}\cup\{2e+1\colon e\in\text{INF}\}$
@@ -149,7 +208,8 @@
 			\item Zeige, dass das Komplement von TOT auf FIN many-one-reduzierbar ist,
 				also dass $\overline{\text{TOT}}\leq_m\text{FIN}$ gilt.
 			\item Zeige, dass FIN nicht rekursiv aufzählbar ist. \\
-				\textit{Hinweis}: Man kann durch geeignete $m$-Reduzierung zeigen,
+				\textit{Hinweis}: Entweder zeigst du dies direkt,
+				oder du zeigst durch geeignete $m$-Reduzierung,
 				dass $\overline{\text{TOT}}$ nicht rekursiv aufzählbar ist.
 		\end{enumerate}
 	\end{question}
@@ -161,31 +221,49 @@
 				Aus $\text{FIN}\leq_m\text{FIN}\oplus\text{INF}$ und $\text{INF}\leq_m\text{FIN}\oplus\text{INF}$
 				folgern wir mithilfe der Abgeschlossenheit der rekursiv aufzählbaren Mengen nach unten gegen $m$-Reduzierung,
 				dass $\text{FIN}\oplus\text{INF}$ nicht rekusiv aufzählbar ist.
-			\item \textbf{TODO}
-			\item \textbf{TODO}
-		\end{enumerate}
-	\end{solution}
-	
-	\begin{question}
-		Welche der folgenden Aussagen sind wahr?
-		Begründe deine Antworten und gebe für falsche Aussagen ein Gegenbeispiel an.
-		\begin{enumerate}[(a)]
-			\item Jede unendliche rekursive Menge enthält eine nichtrekursive Teilmenge.
-			\item Für zwei rekursiv aufzählbare Mengen $A$ und $B$ ist auch $A\setminus B$ rekursiv aufzählbar.
-			\item Seien $A$ und $B$ zwei disjunkte rekursiv aufzählbare Mengen, sodass $A\cup B$ rekursiv ist.
-				Dann sind auch $A$ und $B$ rekursiv.
-			\item Sind sowohl $A$ als auch $\overline{A}$ rekursiv aufzählbar, so gilt $A=_m\overline{A}$.
-		\end{enumerate}
-		\textit{Hinweis}: Du darfst alle Resultate der Vorlesung inklusive der Church-Turing-These verwenden.
-	\end{question}
-	\begin{solution}
-		\begin{enumerate}[(a)]
-			\item Wahr. Für $A\subseteq\mathbb{N}$ unendlich ist die Potenzmenge $\mathcal{P}(A)$,
-				d.h. die Menge der Teilmengen von $A$, überabzählbar.
-				Die Klasse der rekursiven Mengen ist allerdings abzählbar.
-			\item Falsch.
-			\item Wahr.
-			\item Wahr.
+			\item Definiere die zweistellige partiell rekursive Funktion $\psi$ durch
+				\[\psi(e,x)=\sum_{n=0}^{x}\varphi_e(n).\]
+				Dann gibt es, da $\varphi$ eine Gödelnummerierung ist,
+				eine rekursive Übersetzungsfunktion $f$ von $\psi$ nach $\varphi$,
+				d.h. $\psi(e,x)=\varphi_{f(e)}(x)$ für alle $x\in\mathbb{N}$.
+				Somit gilt \begin{align*}
+					e\in\overline{\text{TOT}}
+					&\Rightarrow e\not\in\text{TOT} \\
+					&\Rightarrow\varphi_e(x_0)\uparrow\text{ für ein }x_0\in\mathbb{N} \\
+					&\Rightarrow\psi_e(x)\uparrow\text{ für alle }x\geq x_0 \\
+					&\Rightarrow W_{f(e)}=Db(\varphi_{f(e)})=Db(\psi_e)\text{ ist endlich} \\
+					&\Rightarrow f(e)\in\text{FIN} \\
+				\end{align*} und \begin{align*}
+					e\not\in\overline{\text{TOT}}
+					&\Rightarrow e\in\text{TOT} \\
+					&\Rightarrow\varphi_e(x)\downarrow\text{ für alle }x\in\mathbb{N} \\
+					&\Rightarrow\psi_e(x)\downarrow\text{ für alle }x\in\mathbb{N} \\
+					&\Rightarrow W_{f(e)}=Db(\varphi_{f(e)})=Db(\psi_e)=\mathbb{N} \text{ ist unendlich} \\
+					&\Rightarrow f(e)\in\text{INF}=\overline{\text{FIN}},
+				\end{align*}
+				d.h. $e\in\overline{\text{TOT}}\Leftrightarrow f(e)\in\text{FIN}$
+				und deshalb $\overline{\text{TOT}}\leq_m\text{FIN}$ via $f$.
+			\item Es genügt, zu zeigen, dass $\overline{\text{TOT}}$ nicht rekursiv aufzählbar ist,
+				denn dann folgt aus der Abgeschlossenheit der rekursiv aufzählbaren Mengen nach unten gegen $m$-Reduzierung,
+				dass FIN nicht rekursiv aufzählbar ist.
+				Definiere also die zweistellige partiell rekursive Funktion $\theta$ durch
+				\[\theta(e,x)=\varphi_e(e).\]
+				Dann gibt es, da $\varphi$ eine Gödelnummerierung ist,
+				eine rekursive Übersetzungsfunktion $g$ von $\theta$ nach $\varphi$,
+				d.h. $\theta(e,x)=\varphi_{g(e)}(x)$ für alle $x\in\mathbb{N}$.
+				Somit gilt \[
+					e\in K_d
+					\Leftrightarrow\varphi_e(e)\downarrow
+					\Leftrightarrow\theta_e\text{ total}
+					\Leftrightarrow\varphi_{g(e)}\text{ total}
+					\Leftrightarrow g(e)\in\text{TOT},
+				\]
+				d.h. $K_d\leq_m\text{TOT}$ bzw. $\overline{K_d}\leq_m\overline{\text{TOT}}$ via $g$.
+				Aufgrund der Transitivität von $\leq_m$ folgt $\overline{K_d}\leq_m\text{FIN}$.
+				Also wäre mit FIN auch $\overline{K_d}$ rekursiv aufzählbar,
+				da die rekursiv aufzählbaren Mengen nach unten gegen $\leq_m$ abgeschlossen sind.
+				Dies ergäbe allerdings einen Widerspruch,
+				denn dann wären $K_d$ (laut Vorlesung) und $\overline{K_d}$ (nach Annahme) rekursiv aufzählbar und somit wäre $K_d$ rekursiv.
 		\end{enumerate}
 	\end{solution}
 	
@@ -194,7 +272,8 @@
 		\[\text{Id}=\{e\in\mathbb{N}\colon\forall n~(\varphi_e(n)=n)\}.\]
 		\begin{enumerate}[(a)]
 			\item Zeige, dass das Halteproblem $m$-reduzierbar auf Id ist, das heißt, dass $K\leq_m\text{Id}$ gilt.
-			\item Gebe für die folgenden Aussagen jeweils an, ob sie wahr oder falsch sind. Begründe deine Antworten!
+			\item Gebe für die folgenden Aussagen jeweils an, ob sie wahr oder falsch sind.
+				Begründe deine Antworten!
 				\begin{enumerate}[(i)]
 					\item Id ist rekursiv.
 					\item $\overline{\text{Id}}$ ist rekursiv.
@@ -225,7 +304,7 @@
 					Also wäre mit $\overline{\text{Id}}$ auch $\overline{K}$ rekursiv aufzählbar,
 					da die rekursiv aufzählbaren Mengen nach unten gegen $\leq_m$ abgeschlossen sind.
 					Dies ergäbe allerdings einen Widerspruch,
-					denn dann wären $K$ und $\overline{K}$ rekusriv aufzählbar und somit $K$ rekursiv.
+					denn dann wären $K$ (laut Votlesung) und $\overline{K}$ (nach Annahme) rekursiv aufzählbar und somit wäre $K$ rekursiv.
 			\end{enumerate}
 		\end{enumerate}
 	\end{solution}
@@ -299,4 +378,11 @@
 		\[L=\{w\in\{0,1,2\}^*\colon\#_0(w)=0\text{ oder }\#_1(w)=0\text{ oder }\#_2(w)=0\}).\]
 		Gebe einen deterministischen endlichen Automaten an, der $L$ erkennt.
 	\end{question}
+	\begin{solution}
+		Zunächst beobachtet man, dass
+		\[L=\{0,1\}^*\cup\{0,2\}^*\cup\{1,2\}^*\]
+		gilt.
+		
+		\textbf{TODO}
+	\end{solution}
 \end{document}
