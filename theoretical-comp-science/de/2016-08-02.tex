@@ -75,6 +75,7 @@
 		\[P\equiv T_{1\to4,3}T_{1\to6,3}T_{2\to5,3}T_{2\to7,3}[s_4s_7]_7[s_5s_6]_6[a_4s_5]_5a_3[s_3s_4]_4\]
 	\end{solution}
 	
+	\newpage
 	\section{Funktionen}
 	\begin{question}
 		Zeige nur unter Verwendung der Definition der primitiv rekursiven Funktionen,
@@ -108,6 +109,7 @@
 		ist $M$ damit primitiv rekursiv.
 	\end{solution}
 	
+	\newpage
 	\section{Mengen}
 	\subsection{Rekursiv aufzählbare Mengen}
 	\begin{question}
@@ -160,6 +162,38 @@
 		\textit{Hinweis}: Du darfst alle Resultate der Vorlesung inklusive der Church-Turing-These verwenden.
 	\end{question}
 	
+	\begin{question}
+		Zeige mithilfe der Diagonalisierungsmethode, dass die Menge
+		\[K'=\{e\in\mathbb{N}\colon\varphi(e,x)\downarrow\text{ für alle }x\leq e\}\]
+		nicht rekursiv ist.
+	\end{question}
+	\begin{solution}
+		Angenommen, $K'$ sei rekursiv. Dann ist die durch
+		\[f(x)=\begin{cases}
+			\varphi(x,x)+1, &\text{falls }x\in K' \\
+			0, &\text{sonst}
+		\end{cases}\]
+		definierte Funktion $f:\mathbb{N}\to\mathbb{N}$ rekursiv,
+		da $f$ durch eine (nach Annahme) rekursive Fallunterscheidung definiert ist.
+		Also existiert ein $e\in\mathbb{N}$ mit $\varphi_e=f$.
+		$f$ ist total, also gilt $f(x)\downarrow$ für alle $x\leq e$ und damit
+		\[\varphi_e(e)=f(e)=\varphi(e,e)+1.\]
+		Dies ist ein Widerspruch. Deshalb kann $K'$ nicht rekursiv sein.
+	\end{solution}
+	
+	\begin{question}[subtitle={Klausur 2015}]
+		Beweise oder widerlege die folgenden Aussagen:
+		\begin{enumerate}[(a)]
+			\item Für alle rekursiv aufzählbaren Mengen $A_0,A_1,A_2$ ist die zugehörige Menge
+				\[B=\{x\colon x\text{ ist Element von \emph{mindestens} zwei der Mengen }A_0,A_1,A_2\}\]
+				wiederum rekursiv aufzählbar.
+			\item Für alle rekursiv aufzählbaren Mengen $A_0,A_1,A_2$ ist die zugehörige Menge
+				\[C=\{x\colon x\text{ ist Element von \emph{höchstens} zwei der Mengen }A_0,A_1,A_2\}\]
+				wiederum rekursiv aufzählbar.
+		\end{enumerate}
+		Du darfst hierbei alle Ergebnisse aus der Vorlesung verwenden, nicht aber die Church-Turing-These.
+	\end{question}
+	
 	\subsection{Reduktionsmethode}
 	\begin{question}[subtitle={Nachklausur 2012}]
 		\begin{enumerate}[(a)]
@@ -190,6 +224,7 @@
 		\end{enumerate}
 	\end{solution}
 	
+	\newpage
 	\begin{question}
 		Seien FIN und INF die Indizes der endlichen bzw. unendlichen rekursiv aufzählbaren Mengen:
 		\begin{align*}
@@ -309,6 +344,7 @@
 		\end{enumerate}
 	\end{solution}
 	
+	\newpage
 	\section{Formale Sprachen}
 	\begin{question}
 		Zeige, dass die folgenden Sprachen nicht kontextfrei sind:
@@ -334,7 +370,9 @@
 				erzeugt, denn
 				\[L=\{w\in\{0,1\}^*\colon\vert w\vert=2n\text{ für ein }n\in\mathbb{N}\}.\]
 			\item Falsch. \textbf{TODO}: Pumpinglemma anwenden
-			\item Wahr. Jede endliche Sprache ist regulär, denn jede endliche Sprache ist entscheidbar.
+			\item Wahr. $L$ wird von der regulären Grammatik $G=(\{S\},\{0,1\},P,S)$ mit den Regeln
+				\[P=\{S\to w\colon w\in L\}\]
+				erzeugt. Dabei ist $P$ wegen $\vert P\vert=\vert L\vert=n$ endlich.
 		\end{enumerate}
 	\end{solution}
 	
@@ -375,7 +413,7 @@
 	
 	\begin{question}
 		Sei $L$ die reguläre Sprache
-		\[L=\{w\in\{0,1,2\}^*\colon\#_0(w)=0\text{ oder }\#_1(w)=0\text{ oder }\#_2(w)=0\}).\]
+		\[L=\{w\in\{0,1,2\}^*\colon\#_0(w)=0\text{ oder }\#_1(w)=0\text{ oder }\#_2(w)=0\}.\]
 		Gebe einen deterministischen endlichen Automaten an, der $L$ erkennt.
 	\end{question}
 	\begin{solution}
