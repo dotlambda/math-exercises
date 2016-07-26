@@ -48,6 +48,12 @@
 		der die Sprache $L=\{w2w\colon w\in\{0,1\}^*\}$ (über dem Alphabet $\{0,1,2\}$) erkennt.
 	\end{question}
 	
+	\begin{question}[subtitle={Blatt 13, 2015}]
+		Gebe eine 1-Band-Turingmaschine $M$ an, welche die Menge
+		\[A=\{w\in\{0,1\}^*\colon\#_0(w)\text{ gerade}\}\]
+		erkennt.
+	\end{question}
+	
 	\subsection{Registermaschinen}
 	\begin{question}[subtitle={Klausur 2015}]
 		Die Funktion $f:\mathbb{N}\to\mathbb{N}$ sei durch
@@ -74,6 +80,15 @@
 		Diese Darstellung liegt dem folgenden Registeroperator zur Berechnung von $c_=(x,y)$ zugrunde:
 		\[P\equiv T_{1\to4,3}T_{1\to6,3}T_{2\to5,3}T_{2\to7,3}[s_4s_7]_7[s_5s_6]_6[a_4s_5]_5a_3[s_3s_4]_4\]
 	\end{solution}
+	
+	\begin{question}[subtitle={Blatt 13, 2015}]
+		Gebe eine Registermaschine $R$ an, welche die Funktion $f:\mathbb{N}^2\to\mathbb{N}$ mit
+		\[f(x,y)=\begin{cases}
+			\frac{x}{3}, &\text{falls $x$ durch drei teilbar} \\
+			y, &\text{sonst}
+		\end{cases}\]
+		berechnet.
+	\end{question}
 	
 	\newpage
 	\section{Funktionen}
@@ -108,6 +123,18 @@
 		und aufgrund der primitiven Rekursivität der oben genannten Funktionen
 		ist $M$ damit primitiv rekursiv.
 	\end{solution}
+	
+	\begin{question}[subtitle={Blatt 13, 2015}]
+		Sei $f:\mathbb{N}\to\mathbb{N}^2$ gegeben durch
+		\begin{align*}
+			f(0) &= 0 \\
+			f(x+1) &= \begin{cases}
+				f(x)+1, &\text{falls $x$ gerade} \\
+				f(x)+2, &\text{falls $x$ ungerade}
+			\end{cases}
+		\end{align*}
+		Zeige, dass $f$ primitiv rekursiv ist.
+	\end{question}
 	
 	\newpage
 	\section{Mengen}
@@ -194,6 +221,30 @@
 		Du darfst hierbei alle Ergebnisse aus der Vorlesung verwenden, nicht aber die Church-Turing-These.
 	\end{question}
 	
+	\begin{question}[subtitle={Blatt 13, 2015}]
+		\begin{enumerate}[(a)]
+			\item Zeige, dass für eine Menge $A\subseteq\mathbb{N}$ folgende Aussagen äquivalent sind:
+				\begin{enumerate}[(i)]
+					\item $A$ ist rekursiv.
+					\item $A$ und $\overline{A}$ sind rekursiv aufzählbar.
+					\item $A$ ist leer oder der Wertebereich einer schwach monotonen, rekursiven Funktion.
+						Hierbei heißt $g:\mathbb{N}\to\mathbb{N}$ \emph{schwach monoton},
+						falls für alle $x\leq y$ folgt dass $g(x)\leq g(y)$.
+					\item $A$ ist endlich oder der Wertebereich einer streng monotonen, rekursiven Funktion.
+						Hierbei heißt $g:\mathbb{N}\to\mathbb{N}$ \emph{streng monoton}, falls für alle $x<y$ folgt, dass $g(x)<g(y)$.
+				\end{enumerate}
+			\item Zeige:
+				\begin{enumerate}[(i)]
+					\item Ist $A\subseteq\mathbb{N}$ unendlich und rekursiv aufzählbar,
+						so ist $A$ der Wertebereich einer totalen, injektiven, rekursiven Funktion.
+					\item Ist $A\subseteq\mathbb{N}$ unendlich und rekursiv aufzählbar,
+						so enthält $A$ eine unendliche, rekursive Teilmenge $B$.
+					\item Ist $A$ rekursiv aufzählbar, so ist $A$ der Definitions- und Wertebereich einer partiell rekursiven Funktion $\psi$.
+					
+				\end{enumerate}
+		\end{enumerate}
+	\end{question}
+	
 	\subsection{Reduktionsmethode}
 	\begin{question}[subtitle={Nachklausur 2012}]
 		\begin{enumerate}[(a)]
@@ -224,7 +275,6 @@
 		\end{enumerate}
 	\end{solution}
 	
-	\newpage
 	\begin{question}
 		Seien FIN und INF die Indizes der endlichen bzw. unendlichen rekursiv aufzählbaren Mengen:
 		\begin{align*}
@@ -343,6 +393,28 @@
 			\end{enumerate}
 		\end{enumerate}
 	\end{solution}
+	
+	\begin{question}[subtitle={Blatt 13, 2015}]
+		\begin{enumerate}[(a)]
+			\item Sei $W_e=Db(\varphi_e)$ die $e$-te rekursiv aufzählbare Menge
+				und $W=\{e\in\mathbb{N}\colon0,1\in W_e\}$.
+				Zeige $K_d\leq_mW$, indem du eine rekursive Funktion $f:\mathbb{N}\to\mathbb{N}$ angibst mit
+				\[\forall e\colon e\in K_d\Leftrightarrow f(e)\in W\]
+				Ist $W$ rekursiv aufzählbar?
+			\item Folgere aus (a), dass $W$ vollständig für die Klasse der rekursiv aufzählbaren Mengen ist.
+			\item Sei nun $I=\{e\in\mathbb{N}\colon W_e\text{ ist nichttriviale Indexmenge}\}$.
+				Ist $I$ eine Idexmenge? Ist sie nichttrivial?
+			\item Wahr oder falsch?
+				Begründe deine Antwort und gebe gegebenenfalls Gegenbeispiele an!
+				\begin{enumerate}[(i)]
+					\item Ist $B$ rekursiv aufzählbar und $A\leq_m B$, so ist auch $A$ rekursiv aufzählbar.
+					\item Man kann den kleinsten Index einer partiell rekursiven Funktion bestimmen.
+						Genauer: Die Funktion $min$,
+						die jedem Index $e$ die kleinste Zahl $e'$ mit $\varphi_e=\varphi_{e'}$ zuordnet, ist rekursiv
+					\item Es gibt eine abzählbare Klasse $C$, die keine vollständige Menge besitzt.
+				\end{enumerate}
+		\end{enumerate}
+	\end{question}
 	
 	\newpage
 	\section{Formale Sprachen}
