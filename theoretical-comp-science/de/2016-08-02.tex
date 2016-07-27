@@ -54,7 +54,13 @@
 		erkennt.
 	\end{question}
 	
-	\newpage
+	\begin{question}
+		Gebe 3-Band-Turingmaschine $M$ an, die die Funktion $f:\mathbb{N}^2\to\mathbb{N}$ mit
+		\[f(x,y)=x\cdot y\]
+		berechnet.
+	\end{question}
+	
+	\pagebreak
 	\subsection{Registermaschinen}
 	\begin{question}[subtitle={Klausur 2015}]
 		Die Funktion $f:\mathbb{N}\to\mathbb{N}$ sei durch
@@ -91,7 +97,6 @@
 		berechnet.
 	\end{question}
 	
-	\newpage
 	\section{Funktionen}
 	\begin{question}
 		Zeige nur unter Verwendung der Definition der primitiv rekursiven Funktionen,
@@ -137,7 +142,6 @@
 		Zeige, dass $f$ primitiv rekursiv ist.
 	\end{question}
 	
-	\newpage
 	\section{Mengen}
 	\subsection{Rekursiv aufzählbare Mengen}
 	\begin{question}
@@ -246,7 +250,6 @@
 		\end{enumerate}
 	\end{question}
 	
-	\newpage
 	\subsection{Reduktionsmethode}
 	\begin{question}[subtitle={Nachklausur 2012}]
 		\begin{enumerate}[(a)]
@@ -396,6 +399,7 @@
 		\end{enumerate}
 	\end{solution}
 	
+	\pagebreak
 	\begin{question}[subtitle={Blatt 13, 2015}]
 		\begin{enumerate}[(a)]
 			\item Sei $W_e=Db(\varphi_e)$ die $e$-te rekursiv aufzählbare Menge
@@ -418,7 +422,6 @@
 		\end{enumerate}
 	\end{question}
 	
-	\newpage
 	\section{Formale Sprachen}
 	\begin{question}
 		Zeige, dass die folgenden Sprachen nicht kontextfrei sind:
@@ -497,4 +500,16 @@
 		
 		\textbf{TODO}
 	\end{solution}
+	
+	\begin{question}[subtitle={Klausur 2012}]
+		Es sei $G=(\{S,X,Y,Z\},\{a,b\},P,S)$ die kontextfreie Grammatik mit der Regelmenge
+		\[P=\{S\to XY,~X\to ZXb~|~\lambda,~Y\to bY~|~b,~Z\to a~|~\lambda\}.\]
+		\begin{enumerate}[(a)]
+			\item Gebe die von $G$ erzeugte Sprache $L(G)$ an.
+			\item Gebe ein Wort $w\in L(G)$ minimaler Länge an,
+				das mehr als einen Herleitungsbaum besitzt,
+				und zeichne zwei verschiedene zugehörigen Herleitungsbäume.
+			\item Gebe eine kontextfreie Grammatik in Chomsky-Normalform an, die $L(G)$ erzeugt.
+		\end{enumerate}
+	\end{question}
 \end{document}
