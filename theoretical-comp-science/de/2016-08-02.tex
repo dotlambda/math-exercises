@@ -60,7 +60,6 @@
 		berechnet.
 	\end{question}
 	
-	\pagebreak
 	\subsection{Registermaschinen}
 	\begin{question}[subtitle={Klausur 2015}]
 		Die Funktion $f:\mathbb{N}\to\mathbb{N}$ sei durch
@@ -142,6 +141,41 @@
 		Zeige, dass $f$ primitiv rekursiv ist.
 	\end{question}
 	
+	\begin{question}[subtitle={Klausur 2009}]
+		Die Funktion $f:\mathbb{N}\to\mathbb{N}$ sei durch
+		\[f(x)=\begin{cases}
+			\sqrt{x}, &\text{falls }\sqrt{x}\in\mathbb{N} \\
+			0, &\text{sonst}
+		\end{cases}\]
+		definiert. Zeige, dass $f$ primitiv rekursiv ist.
+		(Du darfst hierbei alle Ergebnisse über die primitiv rekursiven Funktionen aus der Vorlesung verwenden.)
+	\end{question}
+	\begin{solution}
+		Wegen
+		\[f(x)=\mu y<x(y\cdot y=x),\]
+		der Abgeschlossenheit von F(PRIM) gegen den beschränkten $\mu$-Operator
+		und weil die Multiplikation primitiv rekursiv ist,
+		ist $f$ primitiv rekursiv.
+	\end{solution}
+	
+	\begin{question}[subtitle={Klausur 2009}]
+		Die Funktion $f:\mathbb{N}\to\mathbb{N}$ sei primitiv rekursiv und $g(n)$ sei die Funktion,
+		die die Anzahl der geraden Nullstellen von $f$ strikt unterhalb von $n$ berechnet, d.h.
+		\[g(n)=\vert\{m\colon m<n~\&~m\text{ gerade}~\&~f(m)=0\}\vert.\]
+		Zeige, dass $g$ ebenfalls primitiv rekursiv ist.
+		(Du darfst hierbei alle Ergebnisse über die primitiv rekursiven Funktionen aus der Vorlesung verwenden.)
+	\end{question}
+	\begin{solution}
+		Wegen
+		\begin{align*}
+			g(0) &= 0 \\
+			g(n+1) &= g(n)+\overline{sg}(f(n))
+		\end{align*}
+		ist $g=\text{PR}(h_1,h_2)$ mit $h_1=C^0_0$ und $h_2=+(U^2_2,\overline{sg}(f(U^2_1)))$
+		und somit primitiv rekursiv.
+	\end{solution}
+	
+	\pagebreak
 	\section{Mengen}
 	\subsection{Rekursiv aufzählbare Mengen}
 	\begin{question}
@@ -184,9 +218,9 @@
 		Zeige:
 		\begin{enumerate}[(a)]
 			\item Ist $A\triangle B$ endlich, so gilt $A=_mB$.
-			\item Die symmetrische Differenz zweier rekursiv aufzählbarer Sprachen ist nicht notwendig rekursiv aufzählbar.
+			\item Die symmetrische Differenz zweier rekursiv aufzählbarer Mengen ist nicht notwendig rekursiv aufzählbar.
 			\item Seien $A$ und $B$ rekursiv aufzählbar.
-			Wenn $A\triangle B$ rekursiv ist, dann sind auch $A\setminus B$ und $B\setminus A$ rekursiv.
+				Wenn $A\triangle B$ rekursiv ist, dann sind auch $A\setminus B$ und $B\setminus A$ rekursiv.
 			%\item Sei $A$ rekursiv. Ist $A\triangle B$ rekursiv aufzählbar, so sind auch $A\setminus B$ und $B\setminus A$ rekursiv aufzählbar.
 			%			\item Sei $A$ nicht rekursiv und $B$ rekursiv.
 			%				Wenn $A\triangle B$ rekursiv ist, dann ist $A\cap B$ nicht rekursiv.
@@ -249,6 +283,18 @@
 				\end{enumerate}
 		\end{enumerate}
 	\end{question}
+	
+	\begin{question}[subtitle={Klausur 2009}]
+		Zeige, dass es zu jeder rekursiv aufzählbaren Menge $A\subseteq\mathbb{N}$ eine 1-stellige partiell rekursive Funktion $\psi$ gibt,
+		sodass $A$ sowohl Definitionsbereich als auch Wertebereich von $\psi$ ist: $A=Db(\psi)=Wb(\psi)$.
+	\end{question}
+	\begin{solution}
+		Da $A$ rekursiv aufzählbar ist, gibt es eine 1-stellige partiell rekursive Funktion $\theta$,
+		deren Definitionsbereich $A$ ist: $A=Db(\theta)$.
+		Definiere die partiell rekursive Funktion $\psi$ durch
+		\[\psi(x)=0\cdot\theta(x)+x.\]
+		Dann gilt $A=Db(\theta)=Db(\psi)=Wb(\psi)$.
+	\end{solution}
 	
 	\subsection{Reduktionsmethode}
 	\begin{question}[subtitle={Nachklausur 2012}]
@@ -340,7 +386,7 @@
 				\[\theta(e,x)=\varphi_e(e).\]
 				Dann gibt es, da $\varphi$ eine Gödelnummerierung ist,
 				eine rekursive Übersetzungsfunktion $g$ von $\theta$ nach $\varphi$,
-				d.h. $\theta(e,x)=\varphi_{g(e)}(x)$ für alle $x\in\mathbb{N}$.
+				d.h. $\theta(e,x)=\varphi_{g(e)}(x)$ für alle $e,x\in\mathbb{N}$.
 				Somit gilt \[
 					e\in K_d
 					\Leftrightarrow\varphi_e(e)\downarrow
@@ -377,7 +423,7 @@
 				\[\psi(\langle e,x\rangle,y)=0\cdot\varphi_e(x)+y.\]
 				Dann gibt es, da $\varphi$ eine Gödelnummerierung ist,
 				eine rekursive Übersetzungsfunktion $f$ von $\psi$ nach $\varphi$,
-				d.h. $\psi(\langle e,x\rangle,y)=\varphi_{f(\langle e,x\rangle)}(y)$ für alle $y\in\mathbb{N}$.
+				d.h. $\psi(\langle e,x\rangle,y)=\varphi_{f(\langle e,x\rangle)}(y)$ für alle $e,x,y\in\mathbb{N}$.
 				Somit gilt
 				\begin{align*}
 					\langle e,x\rangle\in K &\Leftrightarrow \varphi_e(x)\downarrow \\
@@ -390,7 +436,7 @@
 				\item Falsch. Id ist als nichttriviale Indexmenge nach dem Satz von Rice nicht rekursiv.
 					Alternativ kann man argumentieren, dass $K$ nicht rekursiv ist und somit nach dem Reduktionslemma Id auch nicht.
 				\item Falsch. Eine Menge ist genau dann rekursiv, wenn ihr Komplement rekursiv ist.
-				\item Aus $K\leq_m\text{Id}$ via $f$ folgt $\overline{K}\leq_m\overline{\text{Id}}$ via $f$.
+				\item Falsch. Aus $K\leq_m\text{Id}$ via $f$ folgt $\overline{K}\leq_m\overline{\text{Id}}$ via $f$.
 					Also wäre mit $\overline{\text{Id}}$ auch $\overline{K}$ rekursiv aufzählbar,
 					da die rekursiv aufzählbaren Mengen nach unten gegen $\leq_m$ abgeschlossen sind.
 					Dies ergäbe allerdings einen Widerspruch,
@@ -399,7 +445,6 @@
 		\end{enumerate}
 	\end{solution}
 	
-	\pagebreak
 	\begin{question}[subtitle={Blatt 13, 2015}]
 		\begin{enumerate}[(a)]
 			\item Sei $W_e=Db(\varphi_e)$ die $e$-te rekursiv aufzählbare Menge
@@ -419,6 +464,50 @@
 						die jedem Index $e$ die kleinste Zahl $e'$ mit $\varphi_e=\varphi_{e'}$ zuordnet, ist rekursiv
 					\item Es gibt eine abzählbare Klasse $C$, die keine vollständige Menge besitzt.
 				\end{enumerate}
+		\end{enumerate}
+	\end{question}
+	
+	\pagebreak
+	\begin{question}[subtitle={Klausur 2009}]
+		\begin{enumerate}[(a)]
+			\item Zeige, dass die Menge
+				\[A=\{e\colon W_e\not\subseteq\{0,\dots,e\}\}\]
+				$m$-hart für die Klasse der rekursiv aufzählbaren Mengen ist.
+				
+				\textit{Hinweis}: Du kannst hierbei die Vollständigkeit
+				der in der Vorlesung eingeführten Varianten des Halteproblems voraussetzen.
+			\item Ist die Menge $A$ sogar $m$-vollständig für die Klasse der r.a. Mengen?
+				Begründe deine Antwort!
+		\end{enumerate}
+	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Aufgrund der Transitivität von $\leq_m$ ist $A$ schon hart, falls $K_d\leq_mA$ gilt.
+				Wir definieren deshalb die partiell rekursive Funktion $\psi$ durch
+				\[\psi(e,x)=\varphi(e,e).\]
+				Dann gibt es eine rekursive Übersetzungsfunktion $f$ mit
+				$\psi_e=\varphi_{f(e)}\text{ für alle }e\in\mathbb{N}$.
+				Somit gilt
+				\[e\in K_d\Rightarrow\psi_e\text{ total}\Rightarrow\varphi_{f(e)}\text{ total}
+				\Rightarrow W_{f(e)}=\mathbb{N}\Rightarrow f(e)\in A\]
+				und
+				\[e\notin K_d\Rightarrow\psi_e(x)\uparrow\forall x\Rightarrow\varphi_{f(e)}(x)\uparrow\forall x
+				\Rightarrow W_{f(e)}=\emptyset\Rightarrow f(e)\notin A\]
+				und somit $K_d\leq_mA$ via $f$.
+			\item Wegen
+				\[A=\{e\colon\exists\langle x,s\rangle~(x>e~\&~\varphi_e(x)\text{ terminiert in $\leq s$ Schritten})\}\]
+				ist $A$ die Projektion einer rekursiven Menge und damit rekursiv aufzählbar.
+		\end{enumerate}
+	\end{solution}
+	
+	\begin{question}[subtitle={Klausur 2009}]
+		\begin{enumerate}[(a)]
+			\item Zeige, dass die Menge
+				\[A=\{e\colon\vert W_e\vert\geq2\}\]
+				$m$-hart für die Klasse der rekursiv aufzählbaren Mengen ist.
+			
+				\textit{Hinweis}: Du kannst hierbei die Vollständigkeit der in der Vorlesung eingeführten Varianten des Halteproblems voraussetzen.
+			\item Ist die Menge $A$ sogar $m$-vollständig für die Klasse der r.a. Mengen? Begründe deine Antwort!
 		\end{enumerate}
 	\end{question}
 	
