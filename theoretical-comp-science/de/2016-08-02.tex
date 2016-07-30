@@ -23,10 +23,8 @@
 \theoremstyle{definition}
 \newtheorem{ex}{Aufgabe}[section]
 
-\begin{document}
-	\section{Maschinen}
-	
-	\subsection{Turingmaschinen}
+\begin{document}	
+	\section{Turingmaschinen}
 	\begin{question}[subtitle={Klausur 2012}]
 		Gebe eine 1-Band-Turingmaschine $M$ an,
 		die die Funktion $f:\mathbb{N}\times\mathbb{N}\to\mathbb{N}$ mit
@@ -60,7 +58,7 @@
 		berechnet.
 	\end{question}
 	
-	\subsection{Registermaschinen}
+	\section{Registermaschinen}
 	\begin{question}[subtitle={Klausur 2015}]
 		Die Funktion $f:\mathbb{N}\to\mathbb{N}$ sei durch
 		\[f(x)=\begin{cases}
@@ -96,7 +94,7 @@
 		berechnet.
 	\end{question}
 	
-	\section{Funktionen}
+	\section{Primitiv rekursive Funktionen}
 	\begin{question}
 		Zeige nur unter Verwendung der Definition der primitiv rekursiven Funktionen,
 		dass folgende Funktionen primitiv rekursiv sind:
@@ -152,7 +150,7 @@
 	\end{question}
 	\begin{solution}
 		Wegen
-		\[f(x)=\mu y<x(y\cdot y=x),\]
+		\[f(x)=\mu y\leq x(y\cdot y=x),\]
 		der Abgeschlossenheit von F(PRIM) gegen den beschränkten $\mu$-Operator
 		und weil die Multiplikation primitiv rekursiv ist,
 		ist $f$ primitiv rekursiv.
@@ -169,15 +167,16 @@
 		Wegen
 		\begin{align*}
 			g(0) &= 0 \\
-			g(n+1) &= g(n)+\overline{sg}(f(n))
+			g(n+1) &= \begin{cases}
+				g(n)+\overline{sg}(f(n)), &\text{falls }\exists m\leq n~(m+m=n) \\
+				g(n) &\text{sonst}
+			\end{cases}
 		\end{align*}
-		ist $g=\text{PR}(h_1,h_2)$ mit $h_1=C^0_0$ und $h_2=+(U^2_2,\overline{sg}(f(U^2_1)))$
-		und somit primitiv rekursiv.
+		ist $g$ primitiv rekursiv.
 	\end{solution}
 	
 	\pagebreak
-	\section{Mengen}
-	\subsection{Rekursiv aufzählbare Mengen}
+	\section{Rekursiv aufzählbare Mengen}
 	\begin{question}
 		Welche der folgenden Aussagen sind wahr?
 		Begründe deine Antworten und gebe für falsche Aussagen ein Gegenbeispiel an.
@@ -278,8 +277,6 @@
 						so ist $A$ der Wertebereich einer totalen, injektiven, rekursiven Funktion.
 					\item Ist $A\subseteq\mathbb{N}$ unendlich und rekursiv aufzählbar,
 						so enthält $A$ eine unendliche, rekursive Teilmenge $B$.
-					\item Ist $A$ rekursiv aufzählbar, so ist $A$ der Definitions- und Wertebereich einer partiell rekursiven Funktion $\psi$.
-					
 				\end{enumerate}
 		\end{enumerate}
 	\end{question}
@@ -296,7 +293,34 @@
 		Dann gilt $A=Db(\theta)=Db(\psi)=Wb(\psi)$.
 	\end{solution}
 	
-	\subsection{Reduktionsmethode}
+	\begin{question}[subtitle={Klausur 2009}]
+		Es sei $A\subseteq\mathbb{N}$ unendlich und $f:\mathbb{N}\to\mathbb{N}$ total rekursiv.
+		Weiter sei $f(A)=\{f(x)\colon x\in A\}$ das Bild und $f^{-1}(A)=\{x\colon f(x)\in A\}$ das Urbild von $A$ bzgl. $f$.
+		Welche der folgenden Aussagen gelten stets?
+		Begründe deine Antworten! Gebe gegebenenfalls ein Gegenbeispiel an.
+		\begin{enumerate}[(i)]
+			\item Ist $A$ nicht rekursiv, so ist auch das Bild $f(A)$ von $A$ nicht rekursiv.
+			\item Ist $A$ nicht rekursiv und $f$ injektiv, so ist auch $f(A)$ nicht rekursiv.
+			\item Ist $A$ rekursiv aufzählbar, so ist auch $f(A)$ rekursiv aufzählbar.
+			\item Ist $A$ rekursiv, so ist auch $f(A)$ rekursiv.
+			\item Ist $A$ rekursiv, so ist auch $f^{-1}(A)$ rekursiv.
+		\end{enumerate}
+	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(i)]
+			\item Falsch. Sei $A$ nicht rekursiv. Dann ist für $f(x)=0$ konstant $f(A)=\{0\}$ und damit rekursiv.
+			\item Wahr. Da $f$ injektiv ist, gilt $A\leq_mf(A)$ via $f$, denn
+				\[x\in A\Rightarrow f(x)\in A\]
+				und
+				\[x\notin A\Rightarrow f(x')\neq f(x)~\forall x'\Rightarrow f(x)\notin f(A).\]
+			\item Wahr. Gilt $A=Wb(\psi)$ für eine partiell rekursive Funktion $\psi$, so ist $f(A)=Wb(f\circ\psi)$.
+			\item Falsch. Sei $f(n)$ das $n$-te Element des Halteproblems $K$ gemäß einer festen Aufzählung.
+				Dann ist $f$ rekursiv, weil $K$ r.a. ist, aber $f(\mathbb{N})=K$ ist nicht rekursiv.
+			\item Wahr. Ist $A=Db(\psi)$ für eine partiell rekursive Funktion $\psi$, so ist $f^{-1}(A)=Db(\psi\circ f)$.
+		\end{enumerate}
+	\end{solution}
+	
+	\section{Reduktionsmethode}
 	\begin{question}[subtitle={Nachklausur 2012}]
 		\begin{enumerate}[(a)]
 			\item Zeige, dass die Mengen
@@ -326,6 +350,7 @@
 		\end{enumerate}
 	\end{solution}
 	
+	\pagebreak
 	\begin{question}
 		Seien FIN und INF die Indizes der endlichen bzw. unendlichen rekursiv aufzählbaren Mengen:
 		\begin{align*}
@@ -445,6 +470,7 @@
 		\end{enumerate}
 	\end{solution}
 	
+	\pagebreak
 	\begin{question}[subtitle={Blatt 13, 2015}]
 		\begin{enumerate}[(a)]
 			\item Sei $W_e=Db(\varphi_e)$ die $e$-te rekursiv aufzählbare Menge
@@ -467,7 +493,6 @@
 		\end{enumerate}
 	\end{question}
 	
-	\pagebreak
 	\begin{question}[subtitle={Klausur 2009}]
 		\begin{enumerate}[(a)]
 			\item Zeige, dass die Menge
