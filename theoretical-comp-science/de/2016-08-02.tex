@@ -18,7 +18,7 @@
 \SetupExSheets{question/name=Aufgabe}
 \SetupExSheets{counter-format=se.qu,counter-within=section}
 
-%\SetupExSheets{solution/print=true}
+\SetupExSheets{solution/print=true}
 
 \theoremstyle{definition}
 \newtheorem{ex}{Aufgabe}[section]
@@ -53,7 +53,7 @@
 	\end{question}
 	
 	\begin{question}
-		Gebe 3-Band-Turingmaschine $M$ an, die die Funktion $f:\mathbb{N}^2\to\mathbb{N}$ mit
+		Gebe eine 3-Band-Turingmaschine $M$ an, die die Funktion $f:\mathbb{N}^2\to\mathbb{N}$ mit
 		\[f(x,y)=x\cdot y\]
 		berechnet.
 	\end{question}
@@ -115,7 +115,11 @@
 		\[M=\{x\colon x\text{ ist Mersenne-Primzahl}\}\]
 		primitiv rekursiv ist.
 		
-		Du darfst dabei neben der Definition der primitiv rekursiven Funktionen die aus der Vorlesung bekannten Abschlusseigenschaften sowie die primitive Rekursivität der Multiplikation $\cdot$, der modifizierten Subtraktion $\dot{-}$, der Potenzfunktion $n\mapsto2^n$ und der Gleichheitsrelation verwenden.
+		Du darfst dabei neben der Definition der primitiv rekursiven Funktionen
+		die aus der Vorlesung bekannten Abschlusseigenschaften
+		sowie die primitive Rekursivität der Multiplikation $\cdot$,
+		der modifizierten Subtraktion $\dot{-}$,
+		der Potenzfunktion $n\mapsto2^n$ und der Gleichheitsrelation verwenden.
 	\end{question}
 	\begin{solution}
 		Es gilt
@@ -138,6 +142,20 @@
 		\end{align*}
 		Zeige, dass $f$ primitiv rekursiv ist.
 	\end{question}
+	\begin{solution}
+		Wegen
+		\begin{align*}
+			c_{\text{ungerade}}(0) &= 0 \\
+			c_{\text{ungerade}}(x+1) &= 1\dot{-}f(x)
+		\end{align*}
+		ist die charakteristische Funktion der ungeraden Zahlen primitiv rekursiv.
+		Wegen
+		\begin{align*}
+			f(0) &= 0 \\
+			f(x+1) &= f(x) + c_{ungerade}(x) + 1
+		\end{align*}
+		ist dann auch $f$ primitiv rekursiv.
+	\end{solution}
 	
 	\begin{question}[subtitle={Klausur 2009}]
 		Die Funktion $f:\mathbb{N}\to\mathbb{N}$ sei durch
@@ -175,7 +193,6 @@
 		ist $g$ primitiv rekursiv.
 	\end{solution}
 	
-	\pagebreak
 	\section{Rekursiv aufzählbare Mengen}
 	\begin{question}
 		Welche der folgenden Aussagen sind wahr?
@@ -192,22 +209,26 @@
 	\begin{solution}
 		\begin{enumerate}[(a)]
 			\item Wahr. Für $A\subseteq\mathbb{N}$ unendlich ist die Potenzmenge $\mathcal{P}(A)$,
-			d.h. die Menge der Teilmengen von $A$, überabzählbar.
-			Die Klasse der rekursiven Mengen ist allerdings abzählbar.
+				d.h. die Menge der Teilmengen von $A$, überabzählbar.
+				Die Klasse der rekursiven Mengen ist allerdings abzählbar.
 			\item Falsch. Zum Beispiel sind $A=\mathbb{N}$ und $B=K$ laut Vorlesung rekursiv aufzählbar.
-			Allerdings ist $A\setminus B=\overline{K}$ nicht rekursiv aufzählbar,
+				Allerdings ist $A\setminus B=\overline{K}$ nicht rekursiv aufzählbar,
 			da sonst nach dem Komplementlemma $K$ rekursiv wäre.
-			\item Wahr.
+			\item Wahr. Um $x\in A$ zu entscheiden, prüfen wir zunächst, ob $x$ in $A\cup B$ liegt.
+				Ist dies der Fall, zählen wir gleichzeitig $A$ und $B$ auf.
+				Da $x\in A\cup B$ und $A\cap B=\emptyset$ gilt, liegt $x$ in genau einer der Mengen $A$ und $B$.
+				Falls $x$ vom Aufzählungsverfahren für $A$ aufgezählt wird, liegt $x$ in $A$.
+				Wird $x$ von dem für $B$ aufgezählt, nicht. Einer dieser Fälle tritt immer ein.
 			\item Falsch. Dies gilt nur, falls $A\neq\emptyset,\mathbb{N}$:
-			Sind $A$ und $\overline{A}$ rekursiv aufzählbar,
-			so sind $A$ und $\overline{A}$ nach dem Komplementlemma rekursiv.
-			Laut Vorlesung sind alle rekursiven Mengen ungleich $\emptyset,\mathbb{N}$ $m$-äquivalent,
-			was leicht einzusehen ist. \\
-			Gilt aber zum Beispiel $A=\emptyset$, so ist $\overline{A}=\mathbb{N}$.
-			Allerdings gilt $\mathbb{N}\not\leq_m\emptyset$:
-			Aus $\mathbb{N}\leq_m\emptyset$ via $f$, also $x\in\mathbb{N}\Leftrightarrow f(x)\in\emptyset$,
-			folgt $f(x)\not\in\mathbb{N}$ für alle $x\in\mathbb{N}$,
-			was ein Widerspruch zur Rekursivität von $f$ ist.
+				Sind $A$ und $\overline{A}$ rekursiv aufzählbar,
+				so sind $A$ und $\overline{A}$ nach dem Komplementlemma rekursiv.
+				Laut Vorlesung sind alle rekursiven Mengen ungleich $\emptyset,\mathbb{N}$ $m$-äquivalent,
+				was leicht einzusehen ist. \\
+				Gilt aber zum Beispiel $A=\emptyset$, so ist $\overline{A}=\mathbb{N}$.
+				Allerdings gilt $\mathbb{N}\not\leq_m\emptyset$:
+				Aus $\mathbb{N}\leq_m\emptyset$ via $f$, also $x\in\mathbb{N}\Leftrightarrow f(x)\in\emptyset$,
+				folgt $f(x)\not\in\mathbb{N}$ für alle $x\in\mathbb{N}$,
+				was ein Widerspruch zur Rekursivität von $f$ ist.
 		\end{enumerate}
 	\end{solution}
 	
@@ -216,7 +237,9 @@
 		\[A\triangle B=(A\setminus B)\cup(B\setminus A)\]
 		Zeige:
 		\begin{enumerate}[(a)]
-			\item Ist $A\triangle B$ endlich, so gilt $A=_mB$.
+			\item Ist $A\triangle B$ endlich und $A,B\neq\emptyset,\mathbb{N}$, so gilt $A=_mB$.
+				
+				\textit{Bemerkung}: Für $A\triangle B$ endlich schreibt man auch $A=^*B$.
 			\item Die symmetrische Differenz zweier rekursiv aufzählbarer Mengen ist nicht notwendig rekursiv aufzählbar.
 			\item Seien $A$ und $B$ rekursiv aufzählbar.
 				Wenn $A\triangle B$ rekursiv ist, dann sind auch $A\setminus B$ und $B\setminus A$ rekursiv.
@@ -226,6 +249,26 @@
 		\end{enumerate}
 		\textit{Hinweis}: Du darfst alle Resultate der Vorlesung inklusive der Church-Turing-These verwenden.
 	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Ist $A\triangle B$ endlich, so sind auch $A\setminus B$ und $B\setminus A$ endlich.
+				Sei $A\setminus B=\{x_1,\dots,x_n\}$ und $B\setminus A=\{y_1,\dots,y_m\}$.
+				Dann gilt $A\leq_mB$ via $f$ mit
+				\[f(x)=\begin{cases}
+					\overline{b}, &\text{falls }x\in\{x_1,\dots,x_n\} \\
+					b, &\text{falls }x\in\{y_1,\dots,y_m\} \\
+					x, &\text{sonst,}
+				\end{cases}\]
+				wobei $b\in B$ und $\overline{b}\notin B$ gilt.
+				$f$ ist rekursiv, weil endliche Mengen rekursiv sind. $B\leq_mA$ analog.
+			\item $K$ und $\mathbb{N}$ sind rekursiv aufzählbar,
+				aber $K\triangle\mathbb{N}=\overline{K}$ ist nicht rekursiv aufzählbar.
+			\item Um $x\in A\setminus B$ zu entscheiden, prüfe zunächst, ob $x\in A\triangle B$ gilt.
+				Ist dies der Fall, so zählen wir gleichzeitig $A$ und $B$ auf, bis $x$ auftaucht.
+				Da $x$ in $A\triangle B$ liegt, muss $x$ in einer der beiden Mengen liegen.
+				Gilt $x\in B$, so liegt $x$ in $A\setminus B$. Ansonsten nicht.
+		\end{enumerate}
+	\end{solution}
 	
 	\begin{question}
 		Zeige mithilfe der Diagonalisierungsmethode, dass die Menge
@@ -241,7 +284,7 @@
 		definierte Funktion $f:\mathbb{N}\to\mathbb{N}$ rekursiv,
 		da $f$ durch eine (nach Annahme) rekursive Fallunterscheidung definiert ist.
 		Also existiert ein $e\in\mathbb{N}$ mit $\varphi_e=f$.
-		$f$ ist total, also gilt $f(x)\downarrow$ für alle $x\leq e$ und damit
+		$f$ ist total, also gilt $f(x)\downarrow$ für alle $x\leq e$, deshalb $e\in K'$ und somit
 		\[\varphi_e(e)=f(e)=\varphi(e,e)+1.\]
 		Dies ist ein Widerspruch. Deshalb kann $K'$ nicht rekursiv sein.
 	\end{solution}
@@ -280,17 +323,59 @@
 				\end{enumerate}
 		\end{enumerate}
 	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Wir zeigen dies per Ringschluss:
+				\begin{enumerate}[\hspace{45pt}]
+					\item[(i)$\Rightarrow$(iv)] Wir definieren
+						\begin{align*}
+							g(0) &= \mu x(x\in A) \\
+							g(y+1) &= \mu x(x>g(y)~\&~x\in A).
+						\end{align*}
+						Weil $A$ rekursiv und nicht endlich ist, ist $g$ rekursiv.
+						Offensichtlich ist $g$ streng monoton und $\text{Wb}(g)=A$.
+					\item[(iv)$\Rightarrow$(iii)] Falls $A$ nicht endlich ist, genügt die Funktion $g$ aus (iv) unseren Anforderungen.
+						Ist $A$ endlich, aber nicht leer, so definieren wir
+						\[g(m)=\begin{cases}
+							x_m, &\text{falls }m\leq n \\
+							x_n, &\text{sonst,}
+						\end{cases}\]
+						wobei $A=\{x_0,\dots,x_n\}$ mit $x_0<\ldots<x_n$ gelten soll.
+						Dann ist $g$ rekursiv, da $g$ über endlich viele rekursive Fallunterscheidungen definiert ist.
+					\item[(iii)$\Rightarrow$(ii)] Wegen $A=\text{Wb}(g)$ ist $A$ rekursiv aufzählbar.
+						Falls $A$ endlich ist, ist $A$ rekursiv und somit $\overline{A}$ rekursiv aufzählbar. Ansonsten ist $\overline{A}$ wegen
+						\[\overline{A}=\{x\in\mathbb{N}\colon\exists y~(g(y)>x~\&~\forall y'<y~(g(y')\neq x)\}\]
+						die Projektion einer rekursiven Menge und somit rekursiv aufzählbar.
+					\item[(ii)$\Rightarrow$(i)] Siehe Vorlesung.
+				\end{enumerate}
+			\item \begin{enumerate}[(i)]
+					\item Folgt direkt aus (a), da jede streng monotone Funktion injektiv ist.
+					\item Da $A$ nicht leer ist, ist $A$ der Wertebereich einer total rekursiven Funktion $f$.
+						Dann ist die rekursive Funktion $g$ mit
+						\begin{align*}
+							g(0) &= f(0) \\
+							g(y+1) &= \begin{cases}
+								f(y+1), &\text{falls }f(y+1)\geq f(y) \\
+								f(y), &\text{sonst}
+							\end{cases}
+						\end{align*}
+						schwach monoton und deshalb ist nach (a) die Menge $B=\text{Wb}(g)$ rekursiv.
+						Offensichtlich gilt $\text{Wb}(g)\subseteq \text{Wb}(f)=A$ und weil $A$ unendlich ist,
+						gibt es für jedes $y$ ein $y'$ mit $f(y')>g(y)$, also auch $g(y')>g(y)$.
+				\end{enumerate}
+		\end{enumerate}
+	\end{solution}
 	
 	\begin{question}[subtitle={Klausur 2009}]
 		Zeige, dass es zu jeder rekursiv aufzählbaren Menge $A\subseteq\mathbb{N}$ eine 1-stellige partiell rekursive Funktion $\psi$ gibt,
-		sodass $A$ sowohl Definitionsbereich als auch Wertebereich von $\psi$ ist: $A=Db(\psi)=Wb(\psi)$.
+		sodass $A$ sowohl Definitionsbereich als auch Wertebereich von $\psi$ ist: $A=\text{Db}(\psi)=\text{Wb}(\psi)$.
 	\end{question}
 	\begin{solution}
 		Da $A$ rekursiv aufzählbar ist, gibt es eine 1-stellige partiell rekursive Funktion $\theta$,
-		deren Definitionsbereich $A$ ist: $A=Db(\theta)$.
+		deren Definitionsbereich $A$ ist: $A=\text{Db}(\theta)$.
 		Definiere die partiell rekursive Funktion $\psi$ durch
 		\[\psi(x)=0\cdot\theta(x)+x.\]
-		Dann gilt $A=Db(\theta)=Db(\psi)=Wb(\psi)$.
+		Dann gilt $A=\text{Db}(\theta)=\text{Db}(\psi)=\text{Wb}(\psi)$.
 	\end{solution}
 	
 	\begin{question}[subtitle={Klausur 2009}]
@@ -313,10 +398,11 @@
 				\[x\in A\Rightarrow f(x)\in A\]
 				und
 				\[x\notin A\Rightarrow f(x')\neq f(x)~\forall x'\Rightarrow f(x)\notin f(A).\]
-			\item Wahr. Gilt $A=Wb(\psi)$ für eine partiell rekursive Funktion $\psi$, so ist $f(A)=Wb(f\circ\psi)$.
-			\item Falsch. Sei $f(n)$ das $n$-te Element des Halteproblems $K$ gemäß einer festen Aufzählung.
-				Dann ist $f$ rekursiv, weil $K$ r.a. ist, aber $f(\mathbb{N})=K$ ist nicht rekursiv.
-			\item Wahr. Ist $A=Db(\psi)$ für eine partiell rekursive Funktion $\psi$, so ist $f^{-1}(A)=Db(\psi\circ f)$.
+			\item Wahr. Gilt $A=\text{Wb}(\psi)$ für eine partiell rekursive Funktion $\psi$, so ist $f(A)=\text{Wb}(f\circ\psi)$.
+			\item Falsch. Das Halteproblem $K$ ist rekursiv aufzählbar.
+				Also gibt es eine total rekursive Funktion $f$ mit $\text{Wb}(f)=K$.
+				Dann ist $f(\mathbb{N})=K$ nicht rekursiv.
+			\item Wahr. Ist $A=\text{Db}(\psi)$ für eine partiell rekursive Funktion $\psi$, so ist $f^{-1}(A)=\text{Db}(\psi\circ f)$.
 		\end{enumerate}
 	\end{solution}
 	
@@ -324,33 +410,31 @@
 	\begin{question}[subtitle={Nachklausur 2012}]
 		\begin{enumerate}[(a)]
 			\item Zeige, dass die Mengen
-			\[A=\{\langle x,y\rangle\colon\varphi_x(y)\downarrow\text{ und }\varphi_y(x)\downarrow\}\]
-			und
-			\[B=\{\langle x,y\rangle\colon\varphi_x(y)\uparrow\text{ oder }\varphi_y(x)\uparrow\}\]
-			nicht rekursiv sind.
+				\[A=\{\langle x,y\rangle\colon\varphi_x(y)\downarrow\text{ und }\varphi_y(x)\downarrow\}\]
+				und
+				\[B=\{\langle x,y\rangle\colon\varphi_x(y)\uparrow\text{ oder }\varphi_y(x)\uparrow\}\]
+				nicht rekursiv sind.
 			\item Sind $A$ und $B$ rekursiv aufzählbar?
 		\end{enumerate}
 	\end{question}
 	\begin{solution}
 		\begin{enumerate}[(a)]
 			\item Es gilt $K_d\leq_m A$ via $f(x)=\langle x,x\rangle$ da
-			\[x\in K_d\Leftrightarrow\varphi_x(x)\downarrow\Leftrightarrow
-			\varphi_x(x)\downarrow~\&~\varphi_x(x)\downarrow\Leftrightarrow
-			f(x)=\langle x,x\rangle\in A\]
-			Da das diagonale Halteproblem nicht rekursiv ist,
-			ist also nach dem Reduktionslemma auch $A$ nicht rekursiv.
-			Da $B=\overline{A}$ und die rekursiven Mengen gegen Komplement abgeschlossen sind,
-			ist somit auch $B$ nicht rekursiv.
-			\item Aufgrund des Reduktionslemmas können nicht beide Mengen rekursiv aufzählbar sein.
-			$A$ ist als Definitionsbereich der partiell rekursiven Funktion
-			\[\psi(\langle x,y\rangle)=\varphi(x,y)+\varphi(y,x)\]
-			rekursiv aufzählbar.
-			Da eine Menge rekursiv ist, falls die Menge selbst und ihr Komplement rekursiv aufzählbar sind,
-			kann also $B$ nicht rekursiv aufzählbar sein.
+				\[x\in K_d\Leftrightarrow\varphi_x(x)\downarrow\Leftrightarrow
+				\varphi_x(x)\downarrow~\&~\varphi_x(x)\downarrow\Leftrightarrow
+				f(x)=\langle x,x\rangle\in A\]
+				Da das diagonale Halteproblem nicht rekursiv ist,
+				ist also nach dem Reduktionslemma auch $A$ nicht rekursiv.
+				Da $B=\overline{A}$ und die rekursiven Mengen gegen Komplement abgeschlossen sind,
+				ist somit auch $B$ nicht rekursiv.
+			\item $A$ ist als Definitionsbereich der partiell rekursiven Funktion
+				\[\psi(\langle x,y\rangle)=\varphi(x,y)+\varphi(y,x)\]
+				rekursiv aufzählbar.
+				Da eine Menge rekursiv ist, falls die Menge selbst und ihr Komplement rekursiv aufzählbar sind,
+				kann also $B$ nicht rekursiv aufzählbar sein.
 		\end{enumerate}
 	\end{solution}
 	
-	\pagebreak
 	\begin{question}
 		Seien FIN und INF die Indizes der endlichen bzw. unendlichen rekursiv aufzählbaren Mengen:
 		\begin{align*}
@@ -361,7 +445,7 @@
 			\[\text{TOT}=\{e\in\mathbb{N}\colon W_e=\mathbb{N}\}\]
 		\textit{Hinweis}: Wie in der Vorlesung definiert,
 		ist $W_e$ der Definitionsbereich der $e$-ten partiell rekursiven Funktion,
-		also $W_e=Db(\varphi_e)=\{x\in\mathbb{N}\colon\varphi_e(x)\downarrow\}$.
+		also $W_e=\text{Db}(\varphi_e)=\{x\in\mathbb{N}\colon\varphi_e(x)\downarrow\}$.
 		\begin{enumerate}[(a)]
 			\item Zeige, dass die Menge
 				$\text{FIN}\oplus\text{INF}=\{2e\colon e\in\text{FIN}\}\cup\{2e+1\colon e\in\text{INF}\}$
@@ -392,14 +476,14 @@
 					&\Rightarrow e\not\in\text{TOT} \\
 					&\Rightarrow\varphi_e(x_0)\uparrow\text{ für ein }x_0\in\mathbb{N} \\
 					&\Rightarrow\psi_e(x)\uparrow\text{ für alle }x\geq x_0 \\
-					&\Rightarrow W_{f(e)}=Db(\varphi_{f(e)})=Db(\psi_e)\text{ ist endlich} \\
+					&\Rightarrow W_{f(e)}=\text{Db}(\varphi_{f(e)})=\text{Db}(\psi_e)\text{ ist endlich} \\
 					&\Rightarrow f(e)\in\text{FIN} \\
 				\end{align*} und \begin{align*}
 					e\not\in\overline{\text{TOT}}
 					&\Rightarrow e\in\text{TOT} \\
 					&\Rightarrow\varphi_e(x)\downarrow\text{ für alle }x\in\mathbb{N} \\
 					&\Rightarrow\psi_e(x)\downarrow\text{ für alle }x\in\mathbb{N} \\
-					&\Rightarrow W_{f(e)}=Db(\varphi_{f(e)})=Db(\psi_e)=\mathbb{N} \text{ ist unendlich} \\
+					&\Rightarrow W_{f(e)}=\text{Db}(\varphi_{f(e)})=\text{Db}(\psi_e)=\mathbb{N} \text{ ist unendlich} \\
 					&\Rightarrow f(e)\in\text{INF}=\overline{\text{FIN}},
 				\end{align*}
 				d.h. $e\in\overline{\text{TOT}}\Leftrightarrow f(e)\in\text{FIN}$
@@ -470,10 +554,9 @@
 		\end{enumerate}
 	\end{solution}
 	
-	\pagebreak
 	\begin{question}[subtitle={Blatt 13, 2015}]
 		\begin{enumerate}[(a)]
-			\item Sei $W_e=Db(\varphi_e)$ die $e$-te rekursiv aufzählbare Menge
+			\item Sei $W_e=\text{Db}(\varphi_e)$ die $e$-te rekursiv aufzählbare Menge
 				und $W=\{e\in\mathbb{N}\colon0,1\in W_e\}$.
 				Zeige $K_d\leq_mW$, indem du eine rekursive Funktion $f:\mathbb{N}\to\mathbb{N}$ angibst mit
 				\[\forall e\colon e\in K_d\Leftrightarrow f(e)\in W\]
@@ -492,6 +575,40 @@
 				\end{enumerate}
 		\end{enumerate}
 	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Wir definieren
+				\[\psi(e,x)=\varphi(e,e)\]
+				und erhalten eine Übersetzungsfunktion $f$ von $\psi$ nach $\varphi$,
+				d.h. $\psi(e,x)=\varphi_{f(e)}(x)$ für alle $x\in\mathbb{N}$.
+				Dann gilt
+				\[e\in K_d\Rightarrow\psi_e\text{ total}\Rightarrow\varphi_{f(e)}\text{ total}
+				\Rightarrow W_{f(e)}=\mathbb{N}\Rightarrow f(e)\in W\]
+				und
+				\[e\notin K_d\Rightarrow\psi_e(x)\uparrow\forall x\in\mathbb{N}
+				\Rightarrow\varphi_{f(e)}(x)\uparrow\forall x\in\mathbb{N}
+				\Rightarrow W_{f(e)}=\emptyset\Rightarrow f(e)\notin W\]
+				und somit $K_d\leq_mW$ via $f$.
+				
+				Wegen
+				\[W=\{e\in\mathbb{N}\colon\exists s~(\varphi_e(0)\text{ und }\varphi_e(1)\text{ terminieren in $\leq s$ Schritten}\}\]
+				ist $W$ die Projektion einer rekursiven Menge und somit rekursiv aufzählbar.
+			\item $W$ ist wegen der Härte von $K_d$ und der Transitivität von $\leq_m$ auch hart und somit, da rekursiv aufzählbar, vollständig.
+			\item Gilt $\varphi_e=\varphi_{e'}$, so folgt $W_e=W_{e'}$.
+				Deshalb ist $W_e$ genau dann nichttrivial, wenn $W_{e'}$ nichttrivial ist, und somit ist $I$ eine Indexmenge.
+				$I$ ist nichttrivial, weil jeder Index der nirgends definierten Funktion nicht in $I$ liegt,
+				die Indizes aller rekursiven Funktionen allerdings schon.
+			\item \begin{enumerate}[(i)]
+					\item Wahr. Die rekursiv aufzählbaren Mengen sind nach unten gegen $\leq_m$ abgeschlossen.
+					\item Falsch. Ansonsten wären alle Indexmengen rekursiv, denn
+						\[e\in\text{Ind}(\varphi_{e_0})\Leftrightarrow min(e)=e_0,\]
+						also $\text{Ind}(\varphi_{e_0})\leq_m\{e_0\}$ via $min$,
+						wobei $e_0$ der minimale Index von $\varphi_{e_0}$ ist.
+					\item Wahr. Siehe Blatt 10, Aufgabe 1.
+				\end{enumerate}
+				
+		\end{enumerate}
+	\end{solution}
 	
 	\begin{question}[subtitle={Klausur 2009}]
 		\begin{enumerate}[(a)]
@@ -535,6 +652,25 @@
 			\item Ist die Menge $A$ sogar $m$-vollständig für die Klasse der r.a. Mengen? Begründe deine Antwort!
 		\end{enumerate}
 	\end{question}
+	\begin{solution}
+		\begin{enumerate}[(a)]
+			\item Aufgrund der Transitivität von $\leq_m$ ist $A$ schon hart, falls $K_d\leq_mA$ gilt.
+				Wir definieren deshalb die partiell rekursive Funktion $\psi$ durch
+				\[\psi(e,x)=\varphi(e,e).\]
+				Dann gibt es eine rekursive Übersetzungsfunktion $f$ mit
+				$\psi_e=\varphi_{f(e)}\text{ für alle }e\in\mathbb{N}$.
+				Somit gilt
+				\[e\in K_d\Rightarrow\psi_e\text{ total}\Rightarrow\varphi_{f(e)}\text{ total}
+				\Rightarrow W_{f(e)}=\mathbb{N}\Rightarrow f(e)\in A\]
+				und
+				\[e\notin K_d\Rightarrow\psi_e(x)\uparrow\forall x\Rightarrow\varphi_{f(e)}(x)\uparrow\forall x
+				\Rightarrow W_{f(e)}=\emptyset\Rightarrow f(e)\notin A\]
+				und somit $K_d\leq_mA$ via $f$.
+			\item Wegen
+				\[A=\{e\colon\exists\langle x_1,x_2,s\rangle~(x_1\neq x_2~\&~\varphi_e(x_1),\varphi_e(x_2)\text{ terminieren in $\leq s$ Schritten})\}\]
+				ist $A$ die Projektion einer rekursiven Menge und damit rekursiv aufzählbar.
+		\end{enumerate}
+	\end{solution}
 	
 	\section{Formale Sprachen}
 	\begin{question}
@@ -598,7 +734,8 @@
 					&D\rightarrow aD~|~bE~|~cC~|~\lambda, \\
 					&E\rightarrow aD~|~bC~|~\lambda\}
 				\end{align*}
-				erzeugt.
+				erzeugt
+			\item \textbf{TODO}.
 		\end{enumerate}
 	\end{solution}
 	
