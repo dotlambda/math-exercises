@@ -11,7 +11,7 @@
 \ohead{Robert Schütz\\2. August 2016}
 
 \usepackage{enumerate}
-\usepackage{amsmath, mathtools, amsthm, amsfonts}
+\usepackage{amsmath, mathtools, amsfonts}
 
 \usepackage{exsheets}
 \SetupExSheets{headings=block-subtitle}
@@ -19,9 +19,6 @@
 \SetupExSheets{counter-format=se.qu,counter-within=section}
 
 \SetupExSheets{solution/print=true}
-
-\theoremstyle{definition}
-\newtheorem{ex}{Aufgabe}[section]
 
 \begin{document}	
 	\section{Turingmaschinen}
@@ -596,8 +593,12 @@
 			\item $W$ ist wegen der Härte von $K_d$ und der Transitivität von $\leq_m$ auch hart und somit, da rekursiv aufzählbar, vollständig.
 			\item Gilt $\varphi_e=\varphi_{e'}$, so folgt $W_e=W_{e'}$.
 				Deshalb ist $W_e$ genau dann nichttrivial, wenn $W_{e'}$ nichttrivial ist, und somit ist $I$ eine Indexmenge.
-				$I$ ist nichttrivial, weil jeder Index der nirgends definierten Funktion nicht in $I$ liegt,
-				die Indizes aller rekursiven Funktionen allerdings schon.
+				$I\neq\mathbb{N}$, denn $e\notin I$ für $W_e=\emptyset$.
+				$I\neq\emptyset$, denn $M=\{e\in\mathbb{N}\colon W_e\neq\emptyset\}$ ist eine nichttriviale Indexmenge. Wegen
+				\[M=\{e\in\mathbb{N}\colon\exists\langle x,s\rangle~(\varphi_e(x)\text{ terminiert in }\leq s\text{ Schritten})\}\]
+				ist $M$ rekursiv aufzählbar.
+				Deshalb existiert ein $e\in\mathbb{N}$ mit $W_e=M$. Für dieses $e$ gilt $e\in I$.
+				Also ist $I$ nichttrivial.
 			\item \begin{enumerate}[(i)]
 					\item Wahr. Die rekursiv aufzählbaren Mengen sind nach unten gegen $\leq_m$ abgeschlossen.
 					\item Falsch. Ansonsten wären alle Indexmengen rekursiv, denn
@@ -686,7 +687,7 @@
 		Wahr oder falsch?
 		\begin{enumerate}[(a)]
 			\item Die Sprache $L_1=\{vw\colon v,w\in\{0,1\}^*,\vert v\vert=\vert w\vert\}$ ist regulär.
-			\item Die Sprache $L_2=\{w_0\circ\ldots\circ w_n\colon n\in\mathbb{N},\vert w_k\vert=k~\forall k\in\mathbb{N}\}$ ist kontextfrei.
+			\item Die Sprache $L_2=\{w_0\circ\ldots\circ w_n\colon n\in\mathbb{N}, w_k\in\{0,1\}^k~\forall k\in\{0,\dots,n\}\}$ ist kontextfrei.
 			\item Sei $L\subseteq\{0,1\}^*$ eine Sprache mit $\vert L\vert=n$ für ein $n\in\mathbb{N}$. Dann ist $L$ regulär.
 		\end{enumerate}
 	\end{question}
@@ -695,9 +696,21 @@
 			\item Wahr. $L_1$ wird von der Grammatik $G=(\{S,T\},\{0,1\},P,S)$ mit den Regeln
 				\[P=\{S\rightarrow0T~|~1T~|~\lambda,~T\rightarrow0S~|~1S\}\]
 				erzeugt, denn
-				\[L=\{w\in\{0,1\}^*\colon\vert w\vert=2n\text{ für ein }n\in\mathbb{N}\}.\]
-			\item Falsch. \textbf{TODO}: Pumpinglemma anwenden
-			\item Wahr. $L$ wird von der regulären Grammatik $G=(\{S\},\{0,1\},P,S)$ mit den Regeln
+				\[L_1=\{w\in\{0,1\}^*\colon\vert w\vert=2n\text{ für ein }n\in\mathbb{N}\}.\]
+			\item Falsch. Angenommen, $L_2$ sei kontextfrei.
+				Dann gibt es ein $p\in\mathbb{N}$ gemäß dem Pumping-Lemma für kontextfreie Sprachen.
+				Sei $z=\lambda\circ0\circ00\circ\ldots\circ0^p\in L_2$.
+				Wegen $\vert z\vert\geq p$ gibt es dann eine Zerlegung $z=uvwxy$ mit
+				\begin{enumerate}[(i)]
+					\item $vx\neq\lambda$
+					\item $\vert vwx\vert<p$
+					\item $uv^nwx^ny\in L_2~\forall n\in\mathbb{N}$
+				\end{enumerate}
+				Dann gilt wegen (i) und (ii), dass
+				\[\sum_{k=0}^{p-1}k=\vert z\vert-p<\vert uwy\vert<\vert z\vert=\sum_{k=0}^{p}k,\]
+				weshalb $uwx$ nicht in $L_2$ liegen kann.
+				Dies ist allerdings ein Widerspruch zu Aussage (iii) des Pumpinglemmas.
+			\item Wahr. $L$ wird von der rechtslinearen Grammatik $G=(\{S\},\{0,1\},P,S)$ mit den Regeln
 				\[P=\{S\to w\colon w\in L\}\]
 				erzeugt. Dabei ist $P$ wegen $\vert P\vert=\vert L\vert=n$ endlich.
 		\end{enumerate}
