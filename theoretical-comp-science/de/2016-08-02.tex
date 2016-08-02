@@ -252,11 +252,11 @@
 				Sei $A\setminus B=\{x_1,\dots,x_n\}$ und $B\setminus A=\{y_1,\dots,y_m\}$.
 				Dann gilt $A\leq_mB$ via $f$ mit
 				\[f(x)=\begin{cases}
-					\overline{b}, &\text{falls }x\in\{x_1,\dots,x_n\} \\
-					b, &\text{falls }x\in\{y_1,\dots,y_m\} \\
+					b, &\text{falls }x\in\{x_1,\dots,x_n\} \\
+					\overline{b}, &\text{falls }x\in\{y_1,\dots,y_m\} \\
 					x, &\text{sonst,}
 				\end{cases}\]
-				wobei $b\in B$ und $\overline{b}\notin B$ gilt.
+				wobei $b\in B$ und $\overline{b}\notin B$ beliebig gewählt seien.
 				$f$ ist rekursiv, weil endliche Mengen rekursiv sind. $B\leq_mA$ analog.
 			\item $K$ und $\mathbb{N}$ sind rekursiv aufzählbar,
 				aber $K\triangle\mathbb{N}=\overline{K}$ ist nicht rekursiv aufzählbar.
@@ -343,10 +343,17 @@
 						Falls $A$ endlich ist, ist $A$ rekursiv und somit $\overline{A}$ rekursiv aufzählbar. Ansonsten ist $\overline{A}$ wegen
 						\[\overline{A}=\{x\in\mathbb{N}\colon\exists y~(g(y)>x~\&~\forall y'<y~(g(y')\neq x)\}\]
 						die Projektion einer rekursiven Menge und somit rekursiv aufzählbar.
-					\item[(ii)$\Rightarrow$(i)] Siehe Vorlesung.
+					\item[(ii)$\Rightarrow$(i)] Folgt aus dem Komplementlemma.
 				\end{enumerate}
 			\item \begin{enumerate}[(i)]
-					\item Folgt direkt aus (a), da jede streng monotone Funktion injektiv ist.
+					\item Sei $A=\text{Wb}(f)$ für eine rekursive Funktion $f$. Dann ist die durch
+						\begin{align*}
+							g(0) &= f(0) \\
+							g(x+1) &= f(\mu y(\forall z\leq x~(g(z)\neq f(y))))
+						\end{align*}
+						definierte Funktion $g$ rekursiv, da die rekursiven Prädikate gegen beschränkte Quantoren abgeschlossen sind
+						und aufgrund der Unendlichkeit von $A$ solch ein minimales $y$ immer existiert.
+						Offensichtlich gilt $\text{Wb}(g)=A$ und wegen der Bedingung $g(z)\neq f(y)$ ist $g$ injektiv.
 					\item Da $A$ nicht leer ist, ist $A$ der Wertebereich einer total rekursiven Funktion $f$.
 						Dann ist die rekursive Funktion $g$ mit
 						\begin{align*}
@@ -399,7 +406,8 @@
 			\item Falsch. Das Halteproblem $K$ ist rekursiv aufzählbar.
 				Also gibt es eine total rekursive Funktion $f$ mit $\text{Wb}(f)=K$.
 				Dann ist $f(\mathbb{N})=K$ nicht rekursiv.
-			\item Wahr. Ist $A=\text{Db}(\psi)$ für eine partiell rekursive Funktion $\psi$, so ist $f^{-1}(A)=\text{Db}(\psi\circ f)$.
+			\item Wahr. Da $A$ rekursiv ist, ist auch die charakteristische Funkrion $c_A$ rekursiv.
+				Wegen $x\in f^{-1}(A)\Leftrightarrow f(x)\in A$ ist $c_{f^{-1}(A)}=c_A\circ f$ und somit $c_{f^{-1}(A)}$ auch rekursiv.
 		\end{enumerate}
 	\end{solution}
 	
@@ -577,7 +585,7 @@
 			\item Wir definieren
 				\[\psi(e,x)=\varphi(e,e)\]
 				und erhalten eine Übersetzungsfunktion $f$ von $\psi$ nach $\varphi$,
-				d.h. $\psi(e,x)=\varphi_{f(e)}(x)$ für alle $x\in\mathbb{N}$.
+				d.h. $\psi(e,x)=\varphi_{f(e)}(x)$ für alle $e,x\in\mathbb{N}$.
 				Dann gilt
 				\[e\in K_d\Rightarrow\psi_e\text{ total}\Rightarrow\varphi_{f(e)}\text{ total}
 				\Rightarrow W_{f(e)}=\mathbb{N}\Rightarrow f(e)\in W\]
